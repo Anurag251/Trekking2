@@ -1,0 +1,267 @@
+@use '../helpers/_mixin' as *
+@use '../layout/_grid' as *
+@use '../helpers/_variables' as *
+
+.Package-details-page
+  margin: 60px 0
+
+  .title-area
+    @include flex($justify: space-between)
+    margin-bottom: 1rem
+
+    .Package-details-title
+      font-size: 34px
+      font-weight: 500
+      color: $sec
+
+  .package-detail
+    .PackageGalleryComponent
+      width: 65%
+
+    .package-gallery
+      margin-bottom: 2rem
+
+      .mySwiper2
+        margin-bottom: 10px
+
+        .swiper-slide
+          height: 100%
+          width: 100%
+
+      .image-area
+        height: 400px
+        width: 100%
+
+        img
+          @include image()
+
+      .mySwiper
+        .image-button
+          height: 130px
+          width: 100%
+
+          img
+            @include image()
+
+    .package-detail-layout
+      @include flex($justify: space-between)
+      align-items: flex-start
+      gap: 20px
+
+      .package-booking-details
+        width: 35%
+
+        .item
+          margin-bottom: 1rem
+          border: 1px solid rgba($dark, .3)
+
+          &.booking-form
+            .from-area
+              padding: .3rem 1rem 1rem
+
+              .form-input-group
+                @include grid($columns: repeat(2, 1fr))
+                grid-gap: 10px
+
+              .package-info
+                padding: 0
+
+            .form-label
+              font-size: 10px
+              font-weight: 700
+              text-transform: uppercase
+              letter-spacing: 2px
+              color: rgba($dark, .9)
+
+              span
+                font-size: 8px
+
+            .package-price
+              margin-bottom: .6rem
+
+            .package-info
+              border-bottom: none
+
+        .package-price
+          background-color: $pri
+          color: $light
+
+        .package-head
+          @include flex($justify: space-between)
+          background-color: $pri
+          color: $light
+          padding: 1rem
+
+          .title
+            color: $light
+            margin: 0
+            font-size: 16px
+
+        .form-input
+          border: 1px solid rgba($dark, .5)
+          border-radius: 4px
+          padding: .4rem
+          width: 100%
+          margin-top: .2rem
+          font-size: 15px
+          margin-bottom: 1rem
+
+        .package-info
+          padding: 1rem
+          border-bottom: 1px solid rgba($dark, .3)
+
+          .title
+            font-size: 12px
+            text-transform: uppercase
+            font-weight: 600
+            letter-spacing: 2px
+            color: rgba($dark, .6)
+            margin-bottom: .7rem
+
+          .package-price-area
+            font-size: 20px
+            font-weight: 600
+            color: #A00000
+
+          .value
+            @include flex($justify: flex-start)
+            gap: 10px
+
+            button
+              padding: .4rem
+              border-radius: 10px
+              border: 1px solid $btn
+              cursor: pointer
+
+              &.active
+                background-color: $btn
+                color: $light
+
+        .group
+          padding: 1rem
+          border-bottom: 1px solid rgba($dark, .3)
+          @include flex($justify: space-between)
+
+          .choose-package
+            .name
+              font-size: 16px
+              font-weight: 500
+              margin-bottom: 5px
+
+            p
+              font-size: 14px
+
+          .button-group
+            @include flex($justify: flex-end)
+            gap: 20px
+
+            button
+              height: 30px
+              width: 30px
+              background-color: rgba($dark, .1)
+              border-radius: 4px
+              font-size: 20px
+              font-weight: 300
+              cursor: pointer
+
+              &:hover
+                background-color: rgba($dark, .2)
+
+        .book-now-button
+          padding: .5rem
+
+          button
+            @include customButton($bgcolor: $sec, $color: $light)
+            width: 100%
+            @include flex($justify: center)
+            gap: 10px
+
+            &.active
+              pointer-events: none
+              opacity: .8
+
+              &::before
+                display: block
+
+            &::before
+              content: ''
+              height: 15px
+              width: 15px
+              border: 2px solid transparent
+              border-top: 2px solid $light
+              border-bottom: 2px solid $light
+              border-radius: 50%
+              animation: loadingBtn .8s infinite cubic-bezier(0.77, 0, 0.175, 1)
+              display: none
+
+        .info
+          padding: .3rem
+          text-align: center
+          font-size: 14px
+
+        .title
+          font-size: 20px
+          font-weight: 500
+          color: $pri
+          margin-bottom: 1rem
+
+        .inner
+          padding: 1rem
+
+          .owner
+            @include flex($justify: flex-start)
+            gap: 10px
+
+            .owner-image
+              height: 50px
+              width: 60px
+              object-fit: cover
+
+            .name
+              font-size: 18px
+              font-weight: 500
+              margin-bottom: 3px
+
+          .question
+            padding: .5rem
+            width: 100%
+            color: $light
+            background-color: $sec
+            border-radius: 4px
+            cursor: pointer
+            margin-top: 1rem
+
+        .package-informaitons
+          padding: 1rem
+
+          ul
+            li
+              margin-bottom: 1rem
+
+              span
+                font-size: 14px
+                font-weight: 500
+                margin-bottom: .5px
+
+              p
+                font-size: 14px
+
+
+@media only screen and ( max-width: 1000px )
+  .Package-details-page
+    .package-detail
+      display: flex
+      flex-direction: column
+
+      .PackageGalleryComponent
+        width: 100%
+        order: 2
+
+      .package-detail-layout
+        @include flex($justify: space-between)
+        align-items: flex-start
+        flex-direction: column
+        gap: 20px
+
+        .package-booking-details
+          width: 100%

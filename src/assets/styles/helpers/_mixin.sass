@@ -1,0 +1,49 @@
+@use '../layout/_grid' as *
+
+@mixin bgImage()
+  background-position: center
+  background-size: cover
+  background-repeat: no-repeat
+
+@mixin image()
+  height: 100%
+  width: 100%
+  object-fit: cover
+
+@mixin dark($opacity)
+  position: absolute
+  left: 0
+  top: 0
+  bottom: 0
+  right: 0
+  background-color: rgba(#000000, $opacity)
+  pointer-events: none
+
+@mixin shrinkLabel()
+  top: -12px
+  left: 5px
+  transform: translateY(-50%) scale(.8)
+
+@mixin trans()
+  transition: all .5s cubic-bezier(0.77, 0, 0.175, 1)
+
+@mixin fastTrans()
+  transition: all .4s cubic-bezier(0, 1, 0, 1)
+
+@mixin gradient($deg)
+  background: linear-gradient($deg, $pri, $pri)
+
+@mixin customButton($bgcolor, $color)
+  @include flex($justify: center)
+  padding: .5rem 1.5rem
+  border-radius: 4px
+  box-shadow: 0 0 0 3em $bgcolor inset
+  font-size: 14px
+  color: $color
+  cursor: pointer
+  border: 1.5px solid $bgcolor
+  @include trans()
+
+  &:hover
+    box-shadow: 0 0 0 0 $bgcolor inset
+    color: $bgcolor

@@ -1,0 +1,281 @@
+@use '../layout/_grid' as *
+@use '../helpers/_variables' as *
+@use '../helpers/_mixin' as *
+@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap')
+
+*
+  margin: 0
+  padding: 0
+  box-sizing: border-box
+  font-family: 'Rubik', sans-serif
+  border: none
+  outline: none
+  background: none
+  text-decoration: none
+  list-style: none
+
+body
+  background-color: #F7F7F7
+
+section
+  padding: 60px 0
+  border-bottom: 1px solid rgba($dark, .2)
+
+  &.bg-color
+    background-color: #ffffff
+
+.wrapper
+  max-width: 1300px
+  padding: 0 1rem
+  margin: 0 auto
+
+.swiper-button-next,
+.swiper-button-prev
+  left: 98%
+  transform: translateX(-50%)
+  height: 30px !important
+  width: 30px !important
+  border-radius: 50%
+  background-color: #d6d6d6
+  border: 2px solid #ffffff
+  @include flex($justify: center)
+  z-index: 10
+
+  &::after
+    font-size: 12px
+    color: $dark
+
+.swiper-button-prev
+  left: 2%
+
+.enquiry-sec
+  position: fixed
+  right: 0
+  top: 200px
+  z-index: 100
+  @include flex($justify: center)
+  cursor: pointer
+  padding: 1rem 0
+
+  &:hover
+    .enquiry-icon
+      top: 0
+      opacity: 1
+
+      &:nth-last-child(1)
+        top: 100%
+        
+
+  .enquiry-button
+    @include customButton($bgcolor: $sec, $color: $light)
+    border-radius: 0
+    writing-mode: vertical-rl
+    text-orientation: upright
+    padding: 1rem .5rem
+    text-transform: uppercase
+    letter-spacing: 2px
+    position: relative
+    z-index: 2
+    cursor: pointer
+
+  .enquiry-icon
+    position: absolute
+    top: 50%
+    left: 50%
+    transform: translate(-50%, -50%)
+    height: 30px
+    width: 30px
+    background-color: $light
+    color: $sec
+    opacity: 0
+    @include trans()
+    cursor: pointer
+    z-index: 1
+
+.button-area
+  @include flex($justify: center)
+  width: 100%
+
+  .view-all-button
+    margin-top: 2rem
+    padding: .5rem 1.5rem
+    border-radius: 4px
+    box-shadow: 0 0 0 3em $btn inset
+    font-size: 14px
+    letter-spacing: 2px
+    font-weight: 400
+    color: $light
+    text-transform: uppercase
+    cursor: pointer
+    border: 1.5px solid $btn
+    @include trans()
+
+    &:hover
+      box-shadow: 0 0 0 0 $btn inset
+      color: $btn
+
+.all-package-list
+  @include grid($columns: repeat(5, 1fr))
+
+.teams-list
+  @include grid($columns: repeat(6, 1fr))
+
+.all-page-search
+  background-color: $light
+  padding: 3rem 0
+
+  .hotel-search
+    margin: 0
+    .group
+      background-color: #F7F7F7
+
+.page-loading
+  height: 100%
+  width: 100%
+  background-color: $light
+  position: fixed
+  top: 0
+  left: 0
+  z-index: 1000
+  @include flex($justify: center)
+
+.success-message
+  position: fixed
+  left: 0
+  top: 0
+  height: 100%
+  width: 100%
+  @include flex($justify: center)
+  background-color: rgba($dark, .7)
+  backdrop-filter: blur(5px)
+  z-index: 20
+  opacity: 0
+  pointer-events: none
+  @include trans()
+
+  &.active
+    opacity: 1
+    pointer-events: auto
+
+    .message-box
+      transform: scale(1)
+
+  .message-box
+    position: relative
+    border-radius: 10px
+    background-color: $light
+    box-shadow: 0 4px 10px rgba($dark, .3)
+    padding: 1rem
+    transform: scale(1.2)
+    @include trans()
+
+    .message-icon
+      position: absolute
+      left: 50%
+      top: 0
+      transform: translate(-50%, -50%)
+      height: 50px
+      width: 50px
+      border-radius: 50%
+      @include flex($justify: center)
+      background-color: $sec
+
+      i
+        font-size: 30px
+        color: $light
+
+    .message-title
+      font-size: 28px
+      margin: 2rem 0
+      text-align: center
+
+    .message-content
+      font-size: 18px
+      font-weight: 500
+      text-align: center
+      color: $dark
+      margin-bottom: 2rem
+      text-align: center
+
+    .message-close-button
+      @include customButton($bgcolor: $pri, $color: $light)
+      width: 100%
+
+@media only screen and (max-width: 1300px)
+  .wrapper
+    max-width: 1200px
+
+@media only screen and (max-width: 1200px)
+  .wrapper
+    max-width: 1100px
+
+@media only screen and (max-width: 1100px)
+  .wrapper
+    max-width: 1000px
+
+  .our-teams
+    .teams-list
+      @include grid($columns: repeat(5, 1fr))
+
+  .you-might-also-like
+    .like-list
+      @include grid($columns: repeat(4, 1fr))
+
+@media only screen and (max-width: 1000px)
+  .wrapper
+    max-width: 800px
+
+  .all-package-list
+    @include grid($columns: repeat(4, 1fr))
+
+  .our-teams
+    .teams-list
+      @include grid($columns: repeat(4, 1fr))
+
+  .you-might-also-like
+    .like-list
+      @include grid($columns: repeat(3, 1fr))
+
+@media only screen and (max-width: 800px)
+  .wrapper
+    max-width: 600px
+
+  .all-package-list
+    @include grid($columns: repeat(3, 1fr))
+
+  .our-teams
+    .teams-list
+      @include grid($columns: repeat(3, 1fr))
+
+  .you-might-also-like
+    .like-list
+      @include grid($columns: repeat(2, 1fr))
+
+@media only screen and (max-width: 550px)
+  .all-package-list
+    @include grid($columns: repeat(2, 1fr))
+
+  .our-teams
+    .teams-list
+      @include grid($columns: repeat(2, 1fr))
+
+@media only screen and (max-width: 500px)
+  .sec-title
+    h3
+      font-size: 22px
+
+@media only screen and (max-width: 450px)
+  .wrapper
+    padding: 0 1rem
+
+  .you-might-also-like
+    .like-list
+      @include grid($columns: repeat(1, 1fr))
+
+@media only screen and (max-width: 370px)
+  .all-package-list
+    @include grid($columns: repeat(1, 1fr))
+
+  .our-teams
+    .teams-list
+      @include grid($columns: repeat(1, 1fr))

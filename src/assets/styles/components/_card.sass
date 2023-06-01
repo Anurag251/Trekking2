@@ -1,0 +1,293 @@
+@use '../helpers/_mixin' as *
+@use '../layout/_grid' as *
+@use '../helpers/_variables' as *
+
+.preview-card
+  cursor: pointer
+  &:hover
+    .name
+      color: $sec
+
+    .item-image
+      transform: scale(1)
+
+  .image-box
+    overflow: hidden
+    border-radius: 10px
+    height: 190px
+    margin-bottom: 8px
+
+  .item-image
+    height: 100%
+    width: 100%
+    @include image()
+    @include fastTrans()
+    transform: scale(1.3)
+
+  .name
+    text-align: center
+    font-size: 18px
+    font-weight: 500
+    color: $dark
+    @include fastTrans()
+
+.big-card
+  box-shadow: 0 4px 10px rgba($dark, .1)
+  border-radius: 10px
+  @include fastTrans()
+  background-color: #F7F7F7
+
+  &:hover
+    box-shadow: 0 4px 10px rgba($dark, .25)
+
+    .image-sec
+      .item-image
+        transform: scale(1.1)
+
+    .content-area
+      .name
+        color: $pri
+
+  .image-sec
+    position: relative
+    height: 140px
+    border-radius: 10px 10px 0 0
+    overflow: hidden
+
+    .item-image
+      position: absolute
+      left: 0
+      top: 0
+      height: 100%
+      width: 100%
+      @include image()
+      z-index: 1
+      @include fastTrans()
+      cursor: pointer
+
+    .heart
+      position: absolute
+      right: 10px
+      top: 10px
+      z-index: 2
+      @include flex($justify: center)
+
+  .content-area
+    position: relative
+    padding: 10px
+    border-radius: 0 0 10px 10px
+    background-color: #F7F7F7
+
+    .name
+      font-size: 14px
+      font-weight: 600
+      max-width: 170px
+      color: $dark
+      cursor: pointer
+
+    .user
+      position: absolute
+      right: 10px
+      top: 0%
+      transform: translateY(-50%)
+      height: 22px
+      width: 22px
+      border-radius: 50%
+      @include flex($justify: center)
+      background-color: #eee
+      z-index: 2
+
+    .rating
+      margin: .5rem 0 1rem
+      @include flex($justify: flex-start)
+      font-size: 12px
+      gap: 5px
+
+      .icon-star
+        @include flex($justify: center)
+
+        svg
+          width: 65px
+
+    .item-footer
+      @include flex($justify: space-between)
+      padding: .5rem 0 0
+      border-top: 1px solid rgba($dark, .4)
+
+      .price
+        font-size: 12px
+
+      .days
+        font-size: 10px
+
+.testimonials-card
+  @include grid($columns: 300px 1fr)
+  padding: 1rem
+  background-color: #ffffff
+  border-radius: 10px
+
+  picture
+    border-radius: 10px
+    height: 100%
+    width: 300px
+    overflow: hidden
+
+    img
+      @include image()
+
+  article
+    .content
+      .name
+        font-size: 22px
+        font-weight: 600
+
+      .desc
+        font-size: 16px
+        line-height: 1.8rem
+        text-align: justify
+        margin: .3rem 0 1rem
+
+    .user-details
+      @include flex($justify: flex-start)
+      gap: 10px
+
+      .user-image
+        height: 30px
+        width: 30px
+        border-radius: 50%
+        overflow: hidden
+
+        img
+          @include image()
+
+      .user-name
+        font-size: 16px
+        font-weight: 600
+        color: $pri
+
+.teams-card
+  text-align: center
+
+  .image-box
+    height: 230px
+
+  .name
+    font-size: 15px
+    font-weight: 500
+
+  .desc
+    font-size: 12px
+    font-weight: 400
+    margin: .3rem 0
+
+  .role
+    font-weight: 500
+    color: rgba($dark, .7)
+
+.package-list-card
+  padding: 1rem
+  border: 1px solid rgba($dark, .4)
+  border-radius: 10px
+  margin-bottom: 1rem
+
+  .item-body
+    @include flex($justify: flex-start)
+    align-items: flex-start
+    gap: 10px
+    margin-bottom: .6rem
+
+  .image-area
+    width: 300px
+    height: 100%
+    border-radius: 10px
+    overflow: hidden
+    cursor: pointer
+
+    .item-image
+      @include image()
+
+  .content
+    padding-right: 1rem
+    width: 100%
+
+    .inner
+      @include flex($justify: space-between)
+      align-items: flex-start
+
+    .more-button
+      width: 100%
+      @include flex($justify: flex-end)
+
+      button
+        @include customButton($bgcolor: $pri, $color: $light)
+        padding: .4rem 1rem
+        border-radius: 4px
+
+    .package-name
+      font-size: 20px
+      font-weight: 500
+      margin-bottom: .3rem
+      color: $pri
+      cursor: pointer
+
+    .package-time
+      font-size: 14px
+      color: $sec
+      font-weight: 600
+      margin-bottom: 1rem
+
+    .button-group
+      @include flex($justify: flex-start)
+      flex-wrap: wrap
+
+    .package-cate
+      padding: .4rem .7rem
+      font-size: 14px
+      border-radius: 30px
+      border: 1px solid rgba($dark, .3)
+      display: inline-block
+      margin-bottom: 1rem
+      margin-right: .4rem
+      cursor: pointer
+
+      &.active
+        background-color: $btn
+        color: $light
+
+    .package-price
+      font-size: 14px
+      padding: 1rem
+      text-align: center
+      border: 1px solid rgba($dark, .5)
+      border-radius: 10px
+
+      p
+        font-size: 16px
+        font-weight: 500
+        margin-bottom: .5rem
+
+      span
+        font-weight: 600
+        font-size: 20px
+        color: #bb0000
+
+  .item-footer
+    @include flex($justify: flex-start)
+    flex-wrap: wrap
+    gap: 30px
+
+    .item
+      text-align: center
+      margin-bottom: 0 !important
+
+      .icon
+        margin-bottom: 5px
+
+        i
+          font-size: 16px
+          color: $sec
+
+      .name
+        font-size: 12px
+
+
