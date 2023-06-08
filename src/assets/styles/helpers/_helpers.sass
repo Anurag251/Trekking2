@@ -14,12 +14,18 @@
   text-decoration: none
   list-style: none
 
+:root
+  scroll-behavior: smooth
+
 body
   background-color: #F7F7F7
 
 section
   padding: 60px 0
   border-bottom: 1px solid rgba($dark, .2)
+
+  &.other-page
+    margin-top: 1rem
 
   &.bg-color
     background-color: #ffffff
@@ -29,25 +35,6 @@ section
   padding: 0 1rem
   margin: 0 auto
 
-.swiper-button-next,
-.swiper-button-prev
-  left: 98%
-  transform: translateX(-50%)
-  height: 30px !important
-  width: 30px !important
-  border-radius: 50%
-  background-color: #d6d6d6
-  border: 2px solid #ffffff
-  @include flex($justify: center)
-  z-index: 10
-
-  &::after
-    font-size: 12px
-    color: $dark
-
-.swiper-button-prev
-  left: 2%
-
 .enquiry-sec
   position: fixed
   right: 0
@@ -56,6 +43,10 @@ section
   @include flex($justify: center)
   cursor: pointer
   padding: 1rem 0
+  @include trans()
+
+  &.active
+    right: 500px
 
   &:hover
     .enquiry-icon
@@ -64,7 +55,6 @@ section
 
       &:nth-last-child(1)
         top: 100%
-        
 
   .enquiry-button
     @include customButton($bgcolor: $sec, $color: $light)

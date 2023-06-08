@@ -5,14 +5,13 @@
 /***********      Header      ***********/
 header
   padding: 1rem 0
-  position: absolute
+  position: sticky
   top: 0
   left: 0
   width: 100%
   z-index: 100
-  background-color: rgba($dark, .7)
+  background-color: rgba($pri, .9)
   backdrop-filter: blur(5px)
-  border-radius: 0 0 20px 20px
   @include trans()
 
   &.hide
@@ -34,14 +33,30 @@ header
     .nav-links
       @include flex($justify: flex-end)
 
+      .drop-menu
+        position: relative
+
+        .drop-down
+          position: absolute
+          top: 40px
+          left: 50%
+          transform: translateX(-50%)
+          padding: 1rem
+
+          ul
+            background-color: #fff
+            padding: .5rem
+
       .nav-btn
-        padding: 0 1rem
+        padding: .5rem 1rem
         font-size: 16px
         color: $light
         cursor: pointer
+        font-weight: 300
 
         &.active
-          color: $sec
+          border-radius: 4px
+          background-color: rgba(#ffffff, .1)
 
     .side-nav-btn
       height: 20px
@@ -138,3 +153,129 @@ header
 
       &.active
         color: $pri
+
+.big-drop-down
+  position: fixed
+  top: 70px
+  left: 75%
+  transform: translateX()
+  border-radius: 4px
+  max-width: 600px
+  width: 100%
+  z-index: 100
+  @include flex($justify: stretch)
+  align-items: flex-start
+  background-color: rgba($light, .9)
+  // background-color: $light
+  backdrop-filter: blur(4px)
+  box-shadow: 0 0 10px rgba($dark, .2)
+  transform: translateY(-80px) translateX(-50%) scale(1.03)
+  opacity: 0
+  @include trans()
+  pointer-events: none
+  user-select: none
+
+  &.active
+    opacity: 1
+    transform: translateY(0px) translateX(-50%) scale(1)
+    pointer-events: auto
+    user-select: auto
+
+  &:hover
+    .link-cagtegory
+      background-color: rgba($light, .9)
+
+  .link-cagtegory
+    width: 30%
+    padding: 1rem
+    background-color: rgba($light, .7)
+    transition: .4s
+    border-right: 1px solid rgba($dark, .3)
+
+    ul
+      li
+        height: 70px
+        width: 100%
+        margin-bottom: 1rem
+        @include flex($justify: center)
+        @include bgImage()
+        text-align: center
+        color: $light
+        position: relative
+        border-radius: 4px
+        padding: .2rem
+        cursor: pointer
+        transition: .3s
+
+        &.active
+          transform: scale(1.1)
+          height: 100px
+
+          span
+            opacity: 1
+
+          &::after
+            opacity: 1
+
+        &:nth-last-child(1)
+          margin-bottom: 0
+
+        &:hover
+          transform: scale(1.1)
+          height: 100px
+
+          span
+            opacity: 1
+
+          &::after
+            opacity: 1
+
+        span
+          position: relative
+          z-index: 2
+          font-size: 14px
+          opacity: 0
+
+        &::after
+          content: ''
+          position: absolute
+          left: 0
+          top: 0
+          height: 100%
+          width: 100%
+          background-color: rgba($dark, .4)
+          z-index: 1
+          opacity: 0
+
+  .link-details
+    width: 70%
+    padding: 1rem
+    height: 100%
+
+    .link-title
+      @include flex($justify: space-between)
+
+      button
+        border-bottom: 1px solid $dark
+        cursor: pointer
+
+        &:hover
+          color: $sec
+
+    h4
+      margin-bottom: 1rem
+      font-size: 18px
+      font-weight: 500
+      margin-bottom: 1rem
+
+    ul
+      padding-left: 1.5rem
+
+      li
+        font-size: 16px
+        margin-bottom: .7rem
+        list-style: decimal
+        cursor: pointer
+
+        &:hover
+          color: $sec

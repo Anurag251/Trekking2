@@ -5,6 +5,9 @@ import "swiper/css/pagination";
 
 import { Autoplay } from "swiper";
 
+import { useContext } from "react";
+import { AllDataContext } from "../context/AllData.context";
+
 import image1 from "../assets/images/banner3.jpeg";
 import image2 from "../assets/images/banner2.jpeg";
 import image3 from "../assets/images/banner.jpg";
@@ -13,6 +16,9 @@ import image5 from "../assets/images/banner3.jpeg";
 import image6 from "../assets/images/about-img2.jpg";
 
 const KnowledgeComponent = () => {
+  const { categoriesDatas } = useContext(AllDataContext);
+  console.log(categoriesDatas);
+
   return (
     <section>
       <div className="knowledge">
@@ -28,69 +34,28 @@ const KnowledgeComponent = () => {
           modules={[Autoplay]}
           className="mySwiper"
         >
-          <SwiperSlide>
-            <div className="item" style={{ backgroundImage: `url(${image1})` }}>
-              <div className="details">
-                <h2>Podcast</h2>
-                <p>
-                  Listen to our latest ramblings on the monthly podcast
-                  episodes!
-                </p>
+          {categoriesDatas &&
+            categoriesDatas.map((data, idx) => (
+              <SwiperSlide key={idx}>
+                <div
+                  className="item"
+                  style={{
+                    backgroundImage: `url(${data.image.original_image})`,
+                  }}
+                >
+                  <div className="details">
+                    <h2>{data.category_name}</h2>
+                    <p
+                      dangerouslySetInnerHTML={{
+                        __html: data && data.content,
+                      }}
+                    />
 
-                <button>Explore</button>
-              </div>
-            </div>
-          </SwiperSlide>
-
-          <SwiperSlide>
-            <div className="item" style={{ backgroundImage: `url(${image2})` }}>
-              <div className="details">
-                <h2>Knowledge Centre</h2>
-                <p>
-                  All of your questions and concerns answered in plain, no
-                  nonsense english.
-                </p>
-
-                <button>Explore</button>
-              </div>
-            </div>
-          </SwiperSlide>
-
-          <SwiperSlide>
-            <div className="item" style={{ backgroundImage: `url(${image3})` }}>
-              <div className="details">
-                <h2>Blog</h2>
-                <p>
-                  Read our latest blog articles, straight from experts of the
-                  mountains!
-                </p>
-
-                <button>Explore</button>
-              </div>
-            </div>
-          </SwiperSlide>
-
-          <SwiperSlide>
-            <div className="item" style={{ backgroundImage: `url(${image4})` }}>
-              <div className="details">
-                <h2>Mount Everest</h2>
-                <p>Your best Adventure Deals with nature</p>
-
-                <button>Explore</button>
-              </div>
-            </div>
-          </SwiperSlide>
-
-          <SwiperSlide>
-            <div className="item" style={{ backgroundImage: `url(${image5})` }}>
-              <div className="details">
-                <h2>Hotel Jalmahal</h2>
-                <p>Your best Adventure Deals with nature</p>
-
-                <button>Explore</button>
-              </div>
-            </div>
-          </SwiperSlide>
+                    <button>Explore</button>
+                  </div>
+                </div>
+              </SwiperSlide>
+            ))}
         </Swiper>
       </div>
     </section>

@@ -14,19 +14,6 @@
     width: 100%
     @include flex($justify: space-between)
     z-index: 3
-    margin-top: 2rem
-
-    .content-area
-      color: $light
-      max-width: 500px
-
-      h2
-        font-size: 50px
-        margin-bottom: .6rem
-
-      p
-        font-size: 18px
-        line-height: 2rem
 
     .form-area
       background-color: rgba($light, .7)
@@ -107,65 +94,45 @@
   .swiper-slide
     &.swiper-slide-active
       .item
-        .details
+        .content-area
           h2
             opacity: 1
             transform: translateY(0)
 
-          h5
+          p
             opacity: 1
-
-          button
-            opacity: 1
-            transform: translateY(0)
 
     .item
       @include bgImage()
-      height: 70vh
+      height: 60vh
       position: relative
-      @include flex($justify: center)
+
+      .wrapper
+        height: 100%
+        @include flex($justify: flex-start)
+
+      .content-area
+        color: $light
+        position: relative
+        z-index: 10
+        text-align: left
+        max-width: 500px
+
+        h2
+          font-size: 50px
+          margin-bottom: .6rem
+          transform: translateY(-30px)
+          opacity: 0
+          transition: .8s
+          transition-delay: 1s
+
+        p
+          font-size: 18px
+          line-height: 2rem
+          opacity: 0
+          transition: .8s
+          transition-delay: 2s
 
       &::before
         content: ''
         @include dark($opacity: .5)
-
-      .details
-        @include flex($justify: center)
-        flex-direction: column
-        color: $light
-        max-width: 600px
-        text-align: center
-
-        h2
-          font-size: 40px
-
-          transform: translateY(-100px)
-          opacity: 0
-          transition: .5s
-          transition-delay: .2s
-
-        h5
-          font-size: 20px
-          margin: 1rem
-
-          opacity: 0
-          transition: .5s
-          transition-delay: .2s
-
-        button
-          padding: .7rem 1rem
-          color: $pri
-          background-color: $light
-          box-shadow: 0 0 0 0em inset $pri
-          @include trans()
-          cursor: pointer
-
-          transform: translateY(100px)
-          opacity: 0
-          transition: .5s
-          transition-delay: .2s
-
-          &:hover
-            color: $light
-            background-color: $light
-            box-shadow: 0 0 0 3em inset $pri

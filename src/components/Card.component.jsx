@@ -1,36 +1,36 @@
+/* eslint-disable react/prop-types */
+import { Link } from "react-router-dom";
 
-import packageImage1 from "../assets/images/blog1.png";
-
-const CardComponent = () => {
+const CardComponent = ({ cardData }) => {
   return (
     <div className="item">
       <div className="image-sec">
-        <img src={packageImage1} alt="" />
+        <img src={cardData.image.original_image} alt="" />
       </div>
 
       <div className="text-sec">
-        <div className="days">14 Days</div>
+        <div className="days">{cardData.duration}</div>
 
-        <a href="#">
-          <div className="name">Nar Phu, Thorung La, Tilich & Khopra Trek</div>
-        </a>
+        <Link to="/details">
+          <div className="name">{cardData.title}</div>
+        </Link>
 
         <div className="price">
           <span>From</span>
           <h4>
-            $3320 <span>/ person</span>
+            ${cardData.price[0].value} <span>/ person</span>
           </h4>
         </div>
 
-        <p>
-          Nar Phu, Thorung La, Tilich & Khopra Trek Phu Gaon I’m trekking in the
-          Nar-Phu Valley, a remote and sparsely visited region near the
-          Tibetan[...]
-        </p>
+        <p
+          dangerouslySetInnerHTML={{
+            __html: cardData && cardData.content,
+          }}
+        />
 
-        <a href="product-details-page.html">
+        <Link to="/details">
           <button>Details</button>
-        </a>
+        </Link>
       </div>
     </div>
   );

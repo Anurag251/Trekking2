@@ -69,7 +69,7 @@ const FooterComponent = () => {
                 example@example.com
               </li>
               <li>
-                <i className="fas fa-phone-alt"></i>
+                <i className="fas fa-phone"></i>
                 (977) 9876543210
               </li>
             </ul>

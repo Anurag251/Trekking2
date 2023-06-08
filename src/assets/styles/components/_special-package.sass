@@ -41,6 +41,10 @@
           font-size: 18px
           font-weight: 500
           color: $pri
+          white-space: nowrap
+          overflow: hidden
+          text-overflow: ellipsis
+          max-width: 300px
 
         .price
           font-size: 20px
@@ -58,6 +62,10 @@
           font-size: 16px
           line-height: 152.9%
           color: $para
+          max-height: 100px
+          overflow: hidden
+          margin-bottom: .7rem
+          text-align: justify
 
         button
           @include customButton($bgcolor: $pri, $color: $light)

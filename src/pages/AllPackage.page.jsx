@@ -1,9 +1,9 @@
-import CardComponent from "./Card.component";
 
 import { useContext } from "react";
 import { AllDataContext } from "../context/AllData.context";
+import CardComponent from "../components/Card.component";
 
-const PackageComponent = () => {
+const AllPackagePage = () => {
   const { tripDatas } = useContext(AllDataContext);
 
   return (
@@ -15,7 +15,6 @@ const PackageComponent = () => {
           <div className="list">
             {tripDatas &&
               tripDatas
-                .filter((data, idx) => idx < 6)
                 .map((data, idx) => (
                   <CardComponent key={idx} cardData={data} />
                 ))}
@@ -26,4 +25,4 @@ const PackageComponent = () => {
   );
 };
 
-export default PackageComponent;
+export default AllPackagePage;

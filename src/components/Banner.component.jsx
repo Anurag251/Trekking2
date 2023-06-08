@@ -5,22 +5,16 @@ import "swiper/css/pagination";
 
 import { Autoplay } from "swiper";
 
-import bannerImage1 from "../assets/images/banner-2.jpg";
-import bannerImage2 from "../assets/images/banner-3.jpg";
+import { useContext } from "react";
+import { AllDataContext } from "../context/AllData.context";
 
 const BannerComponent = () => {
+  const { bannerDatas } = useContext(AllDataContext);
+
   return (
     <div className="banner">
       <div className="wrapper search-section">
-        <div className="content-area">
-          <h2>Where Next?</h2>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nulla cum
-            ratione inventore quisquam amet autem est itaque atque.
-            Reprehenderit dolore ad molestias eligendi porro. Architecto aperiam
-            veniam cupiditate temporibus incidunt.
-          </p>
-        </div>
+        <div className="content-area"></div>
 
         <div className="form-area">
           <h2>Find Your Trek</h2>
@@ -64,25 +58,28 @@ const BannerComponent = () => {
         centeredSlides={true}
         speed={1000}
         autoplay={{
-          delay: 4500,
+          delay: 7500,
           disableOnInteraction: false,
         }}
         modules={[Autoplay]}
         className="mySwiper"
       >
-        <SwiperSlide>
-          <div
-            className="item"
-            style={{ backgroundImage: `url(${bannerImage1})` }}
-          ></div>
-        </SwiperSlide>
-
-        <SwiperSlide>
-          <div
-            className="item"
-            style={{ backgroundImage: `url(${bannerImage2})` }}
-          ></div>
-        </SwiperSlide>
+        {bannerDatas &&
+          bannerDatas.map((data, idx) => (
+            <SwiperSlide key={idx}>
+              <div
+                className="item"
+                style={{ backgroundImage: `url(${data.image.original_image})` }}
+              >
+                <div className="wrapper">
+                  <div className="content-area">
+                    <h2>{data.title}</h2>
+                    <p>{data.smalltitle}</p>
+                  </div>
+                </div>
+              </div>
+            </SwiperSlide>
+          ))}
       </Swiper>
     </div>
   );
