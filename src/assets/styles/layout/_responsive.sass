@@ -1,3 +1,7 @@
+@use '../helpers/_mixin' as *
+@use '../layout/_grid' as *
+@use '../helpers/_variables' as *
+
 @media only screen and ( max-width:  1300px)
   .wrapper
     max-width: 1200px
@@ -14,10 +18,199 @@
   .wrapper
     max-width: 800px
 
+  .about-page
+    .section
+      @include grid($columns: 1fr)
+
+      .image-sec
+        display: none
+
+      .text-sec
+        p
+          &.desc
+            max-height: 440px
+
+  .special-package
+    .list
+      @include grid($columns: 1fr 1fr)
+
+  .news-events
+    .list
+      .item
+        height: 300px
+
+        .details
+          max-width: 300px
+
+          .date-time
+            @include flex($justify: flex-start)
+
+            .date
+              .day
+                font-size: 18px
+
+              .month
+                font-size: 12px
+
+            .line
+              margin: 0 .5rem
+
+            .time
+              .hrs
+                margin-bottom: 6px
+
+              .hrs, .loc
+                font-size: 13px
+
+                i
+                  font-size: 12px
+
+          .name
+            margin: 1rem 0 .6rem
+
+          p
+            font-size: 13px
+            line-height: 1.2rem
+            max-height: 75px
+
+          button
+            font-size: 13px
+            padding: .3rem 1rem
+
+  footer
+    .footer-list
+      @include grid($columns: 1fr 1fr)
+
+      .item
+        &:nth-child(4)
+          grid-area: 2
+
 @media only screen and ( max-width:  800px)
   .wrapper
     max-width: 600px
 
+  .special-package
+    .list
+      grid-gap: 10px
+
+      .item
+        .image-sec
+          height: 200px
+
+        .text-sec
+          padding: 1rem
+
+          .days
+            font-size: 11px
+            margin-bottom: .3rem
+
+          .name
+            font-size: 16px
+            max-width: 240px
+
+          .price
+            font-size: 17px
+            margin-bottom: .4rem
+
+            span
+              font-size: 12px
+
+          p
+            font-size: 14px
+            line-height: 140%
+            max-height: 84px
+            margin-bottom: .7rem
+
+          button
+            font-size: 12px
+
+  header
+    .wrapper
+      .nav-links
+        display: none
+      .side-nav-btn
+        display: flex
+
+  .blog-details-page
+
+    .wrapper
+      @include grid($columns: 1fr)
+
 @media only screen and ( max-width:  600px)
   .wrapper
     max-width: 500px
+
+  .special-package
+    .list
+      @include grid($columns: 1fr)
+
+  .news-events
+    .list
+      @include grid($columns: 1fr)
+
+@media only screen and ( max-width:  550px)
+  .enquiry-sec
+    &.active
+      left: 20px
+
+  .contact-popup
+    padding-left: 3rem
+
+  footer
+    .footer-list
+      .item
+
+  .blog-details-page
+    padding: 4rem 0
+    .image
+      height: 300px
+
+    .details
+      .name
+        font-size: 20px
+
+      .desc
+        font-size: 14px
+      
+      .profile
+        .profile-img
+          height: 40px
+          width: 40px
+          margin-right: .5rem
+
+        .profile-detaile
+          color: $dark
+
+          .username
+            font-size: 14px
+
+          .time
+            font-size: 12px
+
+    .recent-post
+      .title
+        font-size: 20px
+        margin-bottom: 10px
+
+@media only screen and ( max-width:  470px)
+  footer
+    .footer-list
+      @include grid($columns: 1fr)
+
+      .item
+        .f-title
+          font-size: 18px
+
+        ul
+          li
+            font-size: 12px
+            i
+              margin-right: 5px
+
+            a
+              color: $light
+              width: 100%
+
+        .desc
+          font-size: 14px
+          line-height: 140%

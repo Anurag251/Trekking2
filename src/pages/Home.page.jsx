@@ -5,6 +5,7 @@ import KnowledgeComponent from "../components/Knowledge.component";
 import TestinomialComponent from "../components/Testinomial.component";
 import BlogComponent from "../components/Blog.component";
 import TeamsComponent from "../components/Teams.component";
+import WhyChooseUsComponent from "../components/WhyChooseUs.component";
 
 const HomePage = () => {
   return (
@@ -22,6 +23,8 @@ const HomePage = () => {
       <BlogComponent />
 
       <TeamsComponent />
+
+      <WhyChooseUsComponent />
     </div>
   );
 };

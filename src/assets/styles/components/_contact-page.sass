@@ -22,6 +22,19 @@
     pointer-events: auto
 
   .contact-title
+    .title-area
+      @include flex($justify: space-between)
+      margin-bottom: .5rem
+
+    .closeContact
+      height: 30px
+      width: 30px
+      border-radius: 50%
+      @include flex($justify: center)
+      color: $light
+      background-color: rgba($sec, .9)
+      cursor: pointer
+
     h2
       font-size: 20px
       font-weight: 500
@@ -69,9 +82,10 @@
       font-weight: 600
       margin-top: 1rem
       @include customButton($bgcolor: $sec, $color: $light)
-      
+
       font-size: 16px
       @include flex($justify: flex-start)
+      gap: 10px
 
       img
         height: 20px

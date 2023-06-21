@@ -1,0 +1,23 @@
+@use '../helpers/_mixin' as *
+@use '../layout/_grid' as *
+@use '../helpers/_variables' as *
+
+.why-choose-us
+  background-color: #1F333A
+  .list
+    @include grid($columns: 1fr 1fr 1fr 1fr)
+
+    .item
+      text-align: center
+
+      i
+        font-size: 2rem
+        color: #2295CC
+        margin-bottom: 1rem
+
+      .name
+        font-size: 1rem
+        text-transform: uppercase
+        font-weight: 500
+        color: $light
+        margin-bottom: 1rem

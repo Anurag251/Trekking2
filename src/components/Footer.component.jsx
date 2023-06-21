@@ -1,21 +1,31 @@
-import footerImage from '../assets/images/footerbg.jpg'
+/* eslint-disable react/prop-types */
+import { Link, useNavigate } from "react-router-dom";
+import footerImage from "../assets/images/footerbg.jpg";
+import { useContext } from "react";
+import { AllDataContext } from "../context/AllData.context";
+import Logo from "../assets/images/logo-sh.png";
 
-const FooterComponent = () => {
+const FooterComponent = ({ contactPopup, setContactPopup }) => {
+  const { categoriesDatas, setSelectedCate, contactDatas, aboutDetails } =
+    useContext(AllDataContext);
+
+  const navigate = useNavigate();
+
   return (
-    <footer style={{backgroundImage: `url(${footerImage})`}}>
+    <footer style={{ backgroundImage: `url(${footerImage})` }}>
       <div className="wrapper">
         <div className="footer-list">
           <div className="item">
             <div className="logo">
-              <h2>LOGO</h2>
+              <img src={Logo} alt="logo" />
             </div>
 
-            <div className="desc">
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-              Provident natus nisi, nam, quod eveniet id sequi facere magni qui
-              alias minus unde eligendi culpa modi sint ullam ipsum pariatur
-              sunt!
-            </div>
+            <p
+              className="desc"
+              dangerouslySetInnerHTML={{
+                __html: aboutDetails && aboutDetails[0].description,
+              }}
+            />
           </div>
 
           <div className="item">
@@ -23,36 +33,41 @@ const FooterComponent = () => {
 
             <ul>
               <li>
-                <a href="index.html">Home</a>
+                <Link to="/">Home</Link>
               </li>
               <li>
-                <a href="about.html">About</a>
+                <Link to="/about">About</Link>
               </li>
               <li>
-                <a href="advanture.html">Adventures</a>
+                <Link to="/packages">Adventures</Link>
               </li>
               <li>
-                <a href="blog">Blog</a>
+                <Link to="/Knowledge">Blog</Link>
               </li>
-              <li>
-                <a href="contact">Contact</a>
-              </li>
+              <li onClick={() => setContactPopup(!contactPopup)}>Contact</li>
             </ul>
           </div>
 
           <div className="item">
-            <div className="f-title">Support Links</div>
+            <div className="f-title">Packages</div>
 
             <ul>
-              <li>
-                <a href="index.html">Ask a Question</a>
-              </li>
-              <li>
-                <a href="about.html">Delivery Terms</a>
-              </li>
-              <li>
-                <a href="adventures.html">Careers</a>
-              </li>
+              {categoriesDatas &&
+                categoriesDatas.map((data, idx) => (
+                  <li
+                    key={idx}
+                    onClick={() => {
+                      setSelectedCate(data.id);
+                      navigate("/search", {
+                        state: {
+                          searchedData: data.trips,
+                        },
+                      });
+                    }}
+                  >
+                    {data.category_name}
+                  </li>
+                ))}
             </ul>
           </div>
 
@@ -62,15 +77,15 @@ const FooterComponent = () => {
             <ul>
               <li>
                 <i className="fas fa-map-marker-alt"></i>
-                Shantinager, Tinkune, Kathmandu 44000
+                {contactDatas && contactDatas.branding.address}
               </li>
               <li>
                 <i className="fas fa-envelope"></i>
-                example@example.com
+                {contactDatas && contactDatas.branding.phone}
               </li>
               <li>
                 <i className="fas fa-phone"></i>
-                (977) 9876543210
+                {contactDatas && contactDatas.branding.email}
               </li>
             </ul>
           </div>
@@ -108,6 +123,6 @@ const FooterComponent = () => {
       </div>
     </footer>
   );
-}
+};
 
 export default FooterComponent;

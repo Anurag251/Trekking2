@@ -2,9 +2,11 @@ import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useContext } from "react";
 import { AllDataContext } from "../context/AllData.context";
+import Logo from "../assets/images/logo-sh.png";
 
 const HeaderComponent = () => {
-  const { categoriesDatas } = useContext(AllDataContext);
+  const { categoriesDatas, setSideNavHidden, sideNavHidden } =
+    useContext(AllDataContext);
   const [selectedCat, setSelectedCat] = useState(null);
   const [selectedCatId, setSelectedCatId] = useState(null);
   const [destinationsSelected, setDestinationsSelected] = useState(false);
@@ -25,7 +27,7 @@ const HeaderComponent = () => {
       <header>
         <div className="wrapper">
           <div className="logo">
-            <h3>LOGO</h3>
+            <img src={Logo} alt="logo" />
           </div>
 
           <ul className="nav-links">
@@ -87,7 +89,10 @@ const HeaderComponent = () => {
             </li>
           </ul>
 
-          <div className="side-nav-btn">
+          <div
+            className={`side-nav-btn ${sideNavHidden ? "active" : ""}`}
+            onClick={() => setSideNavHidden(!sideNavHidden)}
+          >
             <div className="das"></div>
           </div>
         </div>
@@ -118,14 +123,20 @@ const HeaderComponent = () => {
         <div className="link-details">
           <div className="link-title">
             <h4>Package</h4>
-            <button>View App</button>
+            <button>
+              <Link to="/packages">View All</Link>
+            </button>
           </div>
 
           <ul>
             {selectedCat &&
               selectedCat
                 .filter((data, idx) => idx < 15)
-                .map((data, idx) => <li key={idx}>{data.title}</li>)}
+                .map((data, idx) => (
+                  <li key={idx}>
+                    <Link to={`/details/${data.id}`}>{data.title}</Link>
+                  </li>
+                ))}
           </ul>
         </div>
       </div>

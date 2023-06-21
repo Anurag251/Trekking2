@@ -17,11 +17,20 @@ export const AllDataProvider = ({ children }) => {
   const [aboutDetails, setAboutDetails] = useState(null);
   const [sideNavHidden, setSideNavHidden] = useState(false);
   const [filterPackage, setFilterPackage] = useState(false);
+  const [contactDatas, setContactDatas] = useState(null);
+  const [quickLinkDatas, setQuickLinkDatas] = useState(null);
 
   const [loading, setLoading] = useState(false);
-  const [message, setMessage] = useState("");
+  const [message, setMessage] = useState({
+    message: false,
+    title: "",
+    type: "",
+    desc: "",
+  });
 
   const [selectedCate, setSelectedCate] = useState(null);
+  const [searchData, setSearchData] = useState(null);
+  const [selectedDatas, setSelectedDatas] = useState(null);
 
   useEffect(() => {
     if (
@@ -170,6 +179,32 @@ export const AllDataProvider = ({ children }) => {
       .catch((err) => {
         console.log(err);
       });
+
+    apis
+      .get("/quicklink")
+      .then((res) => {
+        if (res.status === 200) {
+          setQuickLinkDatas(res.data.data);
+          // console.log("review: ");
+          // console.log(res.data.data);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
+    apis
+      .get("/settings")
+      .then((res) => {
+        if (res.status === 200) {
+          setContactDatas(res.data.data);
+          // console.log("review: ");
+          // console.log(res.data.data);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }, []);
 
   return (
@@ -203,6 +238,14 @@ export const AllDataProvider = ({ children }) => {
         setSideNavHidden,
         filterPackage,
         setFilterPackage,
+        searchData,
+        setSearchData,
+        selectedDatas,
+        setSelectedDatas,
+        contactDatas,
+        setContactDatas,
+        quickLinkDatas,
+        setQuickLinkDatas,
       }}
     >
       {children}

@@ -3,6 +3,29 @@
 @use '../helpers/_variables' as *
 
 .about-page
+  &.thisIsPage
+    .section
+      @include grid($columns: 1fr)
+
+      .text-sec
+        grid-area: 2
+
+      .image-sec
+        height: 630px
+
+        img
+          &:nth-child(1)
+            height: 40%
+
+          &:nth-child(2)
+            height: 55%
+
+          &:nth-child(3)
+            height: 55%
+
+          &:nth-child(4)
+            height: 40%
+
   .section
     @include grid($columns: 1fr 1.5fr)
 
@@ -19,6 +42,13 @@
         margin-bottom: 1rem
         line-height: 1.5rem
         text-align: justify
+
+        &.desc
+          max-height: 450px
+          overflow: hidden
+
+      .readMore
+        @include customButton($bgcolor: $pri, $color: $light)
 
     .image-sec
       height: 530px

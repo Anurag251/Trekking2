@@ -28,7 +28,12 @@ header
     @include flex($justify: space-between)
 
     .logo
-      color: $light
+      height: 50px
+      width: 140px
+
+      img
+        @include image()
+        object-fit: contain
 
     .nav-links
       @include flex($justify: flex-end)
@@ -110,7 +115,9 @@ header
   width: 260px
   height: 100%
   z-index: 100
-  background-color: $dark
+  // background: linear-gradient(30deg, rgba($pri, .85), rgba($sec, .85))
+  background-color: #252525
+  backdrop-filter: blur(10px)
   pointer-events: none
   @include trans()
 
@@ -124,41 +131,48 @@ header
     right: -30px
     height: 30px
     width: 30px
-    background-color: #a00000
+    background-color: $sec
     @include flex($justify: center)
     color: $light
     font-size: 14px
     cursor: pointer
 
   .logo
-    height: 60px
     width: 100%
     @include flex($justify: center)
+    padding: 1rem 0
+
+    img
+      height: 60px
+      width: 160px
+      object-fit: contain
 
     h3
       color: $light
 
   .nav-links
+    padding: 0 1rem
+
     .nav-btn
-      padding: 1rem 2rem
+      padding: .6rem .7rem
       font-size: 16px
       color: $light
       cursor: pointer
       width: 100%
       text-align: left
-      margin-bottom: 5px
+      margin-bottom: .5rem
+      border-radius: 6px
 
       &:hover
         background-color: rgba($light,.2)
 
       &.active
-        color: $pri
+        background-color: rgba($light,.2)
 
 .big-drop-down
   position: fixed
   top: 70px
-  left: 75%
-  transform: translateX()
+  right: 10%
   border-radius: 4px
   max-width: 600px
   width: 100%
@@ -167,9 +181,9 @@ header
   align-items: flex-start
   background-color: rgba($light, .9)
   // background-color: $light
-  backdrop-filter: blur(4px)
+  backdrop-filter: blur(20px)
   box-shadow: 0 0 10px rgba($dark, .2)
-  transform: translateY(-80px) translateX(-50%) scale(1.03)
+  transform: translateY(-80px) scale(1.03)
   opacity: 0
   @include trans()
   pointer-events: none
@@ -177,7 +191,7 @@ header
 
   &.active
     opacity: 1
-    transform: translateY(0px) translateX(-50%) scale(1)
+    transform: translateY(0px) scale(1)
     pointer-events: auto
     user-select: auto
 
@@ -259,6 +273,12 @@ header
         border-bottom: 1px solid $dark
         cursor: pointer
 
+        a
+          color: $dark
+
+          &:hover
+            color: $sec
+
         &:hover
           color: $sec
 
@@ -276,6 +296,11 @@ header
         margin-bottom: .7rem
         list-style: decimal
         cursor: pointer
-
         &:hover
           color: $sec
+
+        a
+          color: $dark
+
+          &:hover
+            color: $sec

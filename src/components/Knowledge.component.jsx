@@ -7,17 +7,11 @@ import { Autoplay } from "swiper";
 
 import { useContext } from "react";
 import { AllDataContext } from "../context/AllData.context";
-
-import image1 from "../assets/images/banner3.jpeg";
-import image2 from "../assets/images/banner2.jpeg";
-import image3 from "../assets/images/banner.jpg";
-import image4 from "../assets/images/card5.png";
-import image5 from "../assets/images/banner3.jpeg";
-import image6 from "../assets/images/about-img2.jpg";
+import { useNavigate } from "react-router-dom";
 
 const KnowledgeComponent = () => {
-  const { categoriesDatas } = useContext(AllDataContext);
-  console.log(categoriesDatas);
+  const { categoriesDatas, setSelectedCate } = useContext(AllDataContext);
+  const navigate = useNavigate();
 
   return (
     <section>
@@ -25,13 +19,24 @@ const KnowledgeComponent = () => {
         <div className="title">Mountain OF Knowledge</div>
 
         <Swiper
-          slidesPerView={4}
+          slidesPerView={1}
           speed={1000}
           autoplay={{
             delay: 4500,
             disableOnInteraction: false,
           }}
           modules={[Autoplay]}
+          breakpoints={{
+            640: {
+              slidesPerView: 2,
+            },
+            768: {
+              slidesPerView: 3,
+            },
+            1024: {
+              slidesPerView: 4,
+            },
+          }}
           className="mySwiper"
         >
           {categoriesDatas &&
@@ -51,7 +56,18 @@ const KnowledgeComponent = () => {
                       }}
                     />
 
-                    <button>Explore</button>
+                    <button
+                      onClick={() => {
+                        setSelectedCate(data.id);
+                        navigate("/search", {
+                          state: {
+                            searchedData: data.trips,
+                          },
+                        });
+                      }}
+                    >
+                      Explore
+                    </button>
                   </div>
                 </div>
               </SwiperSlide>

@@ -184,110 +184,108 @@
     font-weight: 500
     color: rgba($dark, .7)
 
-.package-list-card
-  padding: 1rem
-  border: 1px solid rgba($dark, .4)
+.package-card
+  @include flex($justify: stretch)
+  align-items: flex-start
+  background-color: $light
   border-radius: 10px
   margin-bottom: 1rem
+  height: 100%
 
-  .item-body
-    @include flex($justify: flex-start)
-    align-items: flex-start
-    gap: 10px
-    margin-bottom: .6rem
-
-  .image-area
-    width: 300px
-    height: 100%
-    border-radius: 10px
+  .image-section
+    width: 35%
+    border-radius: 10px 0 0 10px
     overflow: hidden
-    cursor: pointer
+    height: 240px
 
-    .item-image
-      @include image()
-
-  .content
-    padding-right: 1rem
-    width: 100%
-
-    .inner
-      @include flex($justify: space-between)
-      align-items: flex-start
-
-    .more-button
+    img
+      height: 100%
       width: 100%
-      @include flex($justify: flex-end)
+      object-fit: cover
 
-      button
-        @include customButton($bgcolor: $pri, $color: $light)
-        padding: .4rem 1rem
-        border-radius: 4px
+  .package-body
+    width: 65%
+    padding: 1rem
+    max-height: 100%
+    @include flex($justify: space-between)
+    align-items: flex-start
+    flex-direction: column
+    height: 100%
 
-    .package-name
-      font-size: 20px
-      font-weight: 500
-      margin-bottom: .3rem
-      color: $pri
-      cursor: pointer
-
-    .package-time
-      font-size: 14px
-      color: $sec
-      font-weight: 600
-      margin-bottom: 1rem
-
-    .button-group
-      @include flex($justify: flex-start)
-      flex-wrap: wrap
-
-    .package-cate
-      padding: .4rem .7rem
-      font-size: 14px
-      border-radius: 30px
-      border: 1px solid rgba($dark, .3)
-      display: inline-block
-      margin-bottom: 1rem
-      margin-right: .4rem
-      cursor: pointer
-
-      &.active
-        background-color: $btn
-        color: $light
-
-    .package-price
-      font-size: 14px
-      padding: 1rem
-      text-align: center
-      border: 1px solid rgba($dark, .5)
-      border-radius: 10px
-
-      p
-        font-size: 16px
-        font-weight: 500
-        margin-bottom: .5rem
-
-      span
-        font-weight: 600
-        font-size: 20px
-        color: #bb0000
-
-  .item-footer
-    @include flex($justify: flex-start)
-    flex-wrap: wrap
-    gap: 30px
-
-    .item
-      text-align: center
-      margin-bottom: 0 !important
-
-      .icon
-        margin-bottom: 5px
-
-        i
-          font-size: 16px
-          color: $sec
+    .package-content
+      width: 100%
 
       .name
-        font-size: 12px
+        font-size: 20px
+        font-weight: 400
+        margin-bottom: .5rem
+        color: $dark
 
+        &:hover
+          color: $pri
 
+      .desc
+        font-size: 14px
+        line-height: 1.3rem
+        color: rgba($dark, .8)
+        height: 40px
+        overflow: hidden
+        text-align: justify
+
+      .price-switch-area
+        margin: .7rem 0
+        padding: .7rem 0
+        border-top: 1px solid rgba($dark, .3)
+        border-bottom: 1px solid rgba($dark, .3)
+        width: 100%
+
+        .price-title
+          font-size: 13px
+          margin-bottom: .7rem
+          font-weight: 600
+          width: 100%
+
+      .price-switch
+        @include flex($justify: flex-start)
+        flex-wrap: wrap
+        gap: 10px
+
+        button
+          padding: .3rem 1rem
+          background-color: rgba($sec, .15)
+          border-radius: 10px
+          color: $sec
+          cursor: pointer
+          @include fastTrans()
+
+          &:hover
+            box-shadow: 0 0 10px rgba($sec, .2)
+
+          &.active
+            background-color: $sec
+            color: $light
+
+    .package-footer
+      @include flex($justify: space-between)
+      width: 100%
+      gap: 10px
+
+      a
+        width: 60%
+
+      .show-details-btn
+        @include customButton($bgcolor: $pri, $color: $light)
+        width: 100%
+        height: 40px
+        border-radius: 6px
+        font-weight: 400
+
+      .package-price
+        width: 40%
+        text-align: center
+        background-color: rgba($sec, .1)
+        color: $sec
+        height: 40px
+        font-weight: 500
+        @include flex($justify: center)
+        border-radius: 6px

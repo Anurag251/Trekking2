@@ -48,3 +48,21 @@
   &:hover
     box-shadow: 0 0 0 0 $bgcolor inset
     color: $bgcolor
+
+  &.active
+    pointer-events: none
+    opacity: .8
+
+    &::before
+      display: block
+
+  &::before
+    content: ''
+    height: 15px
+    width: 15px
+    border: 2px solid transparent
+    border-top: 2px solid #ffffff
+    border-bottom: 2px solid #ffffff
+    border-radius: 50%
+    animation: loadingBtn .8s infinite cubic-bezier(0.77, 0, 0.175, 1)
+    display: none

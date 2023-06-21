@@ -11,7 +11,7 @@ const CardComponent = ({ cardData }) => {
       <div className="text-sec">
         <div className="days">{cardData.duration}</div>
 
-        <Link to="/details">
+        <Link to={`/details/${cardData.id}`}>
           <div className="name">{cardData.title}</div>
         </Link>
 
@@ -28,7 +28,7 @@ const CardComponent = ({ cardData }) => {
           }}
         />
 
-        <Link to="/details">
+        <Link to={`/details/${cardData.id}`}>
           <button>Details</button>
         </Link>
       </div>

@@ -1,30 +1,27 @@
 import { useContext } from "react";
-import { AllDataContext } from "../context/AllData.context";
 import { Link } from "react-router-dom";
+import { AllDataContext } from "../context/AllData.context";
 
-const AboutComponent = () => {
+const AboutPage = () => {
   const { aboutDetails, galleryDatas } = useContext(AllDataContext);
 
   return (
     <section>
       <div className="wrapper">
-        <div className="about-page">
+        <div className="about-page thisIsPage">
           <div className="title">Making the Adventure Happen</div>
 
           <div className="section">
             <div className="text-sec">
-              <div className="sec-title">Welcome to Nepal</div>
+              <div className="sec-title">
+                {aboutDetails && aboutDetails[0].title}
+              </div>
 
               <p
-                className="desc"
                 dangerouslySetInnerHTML={{
                   __html: aboutDetails && aboutDetails[0].description,
                 }}
               />
-
-              <Link to="/about">
-                <button className="readMore">Read More</button>
-              </Link>
             </div>
 
             <div className="image-sec">
@@ -51,4 +48,4 @@ const AboutComponent = () => {
   );
 };
 
-export default AboutComponent;
+export default AboutPage;
