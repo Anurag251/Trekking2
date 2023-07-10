@@ -61,7 +61,7 @@
         position: relative
         height: 57px
         width: 100%
-        border-bottom: 1px solid $sec
+        border-bottom: 1px solid $pri
         display: flex
         align-items: flex-end
 
@@ -81,7 +81,7 @@
     .submit-btn
       font-weight: 600
       margin-top: 1rem
-      @include customButton($bgcolor: $sec, $color: $light)
+      @include customButton($bgcolor: $pri, $color: $light)
 
       font-size: 16px
       @include flex($justify: flex-start)
@@ -109,7 +109,7 @@
           height: 32px
           width: 32px
           border-radius: 50%
-          background-color: $pri
+          background: linear-gradient(45deg, $pri, $sec)
           @include flex($justify: center)
           margin-right: 10px
 

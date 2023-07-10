@@ -5,6 +5,12 @@ const WhyChooseUsComponent = () => {
     <div className="why-choose-us">
       <section>
         <div className="wrapper">
+          <div className="title-part">
+            <h5>WHY</h5>
+
+            <div className="name">choose sacred</div>
+          </div>
+
           <div className="list">
             <div className="item">
               <i className="fa-solid fa-hand-holding-dollar"></i>
@@ -18,7 +24,7 @@ const WhyChooseUsComponent = () => {
             </div>
 
             <div className="item">
-              <i className="fa-solid fa-hand-holding-dollar"></i>
+              <i className="fa-solid fa-shoe-prints"></i>
 
               <div className="name">ULTIMATE TRIP FLEXIBILITY</div>
 
@@ -29,7 +35,7 @@ const WhyChooseUsComponent = () => {
             </div>
 
             <div className="item">
-              <i className="fa-solid fa-hand-holding-dollar"></i>
+              <i className="fa-solid fa-calendar-days"></i>
 
               <div className="name">ULTIMATE TRIP FLEXIBILITY</div>
 
@@ -40,7 +46,7 @@ const WhyChooseUsComponent = () => {
             </div>
 
             <div className="item">
-              <i className="fa-solid fa-hand-holding-dollar"></i>
+              <i className="fa-solid fa-compass"></i>
 
               <div className="name">ULTIMATE TRIP FLEXIBILITY</div>
 

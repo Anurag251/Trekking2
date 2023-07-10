@@ -3,11 +3,17 @@ import { Link, useNavigate } from "react-router-dom";
 import footerImage from "../assets/images/footerbg.jpg";
 import { useContext } from "react";
 import { AllDataContext } from "../context/AllData.context";
-import Logo from "../assets/images/logo-sh.png";
+import Logo from "../assets/images/SACRED HIMALAYA LOGOA-03.svg";
 
-const FooterComponent = ({ contactPopup, setContactPopup }) => {
-  const { categoriesDatas, setSelectedCate, contactDatas, aboutDetails } =
-    useContext(AllDataContext);
+const FooterComponent = () => {
+  const {
+    categoriesDatas,
+    setSelectedCate,
+    contactDatas,
+    aboutDetails,
+    contactPopup,
+    setContactPopup,
+  } = useContext(AllDataContext);
 
   const navigate = useNavigate();
 
@@ -42,7 +48,7 @@ const FooterComponent = ({ contactPopup, setContactPopup }) => {
                 <Link to="/packages">Adventures</Link>
               </li>
               <li>
-                <Link to="/Knowledge">Blog</Link>
+                <Link to="/blogging">Blog</Link>
               </li>
               <li onClick={() => setContactPopup(!contactPopup)}>Contact</li>
             </ul>
@@ -58,7 +64,7 @@ const FooterComponent = ({ contactPopup, setContactPopup }) => {
                     key={idx}
                     onClick={() => {
                       setSelectedCate(data.id);
-                      navigate("/search", {
+                      navigate("/search-page", {
                         state: {
                           searchedData: data.trips,
                         },
@@ -95,29 +101,71 @@ const FooterComponent = ({ contactPopup, setContactPopup }) => {
           <span>© Copyright 2022 Company </span>
 
           <div className="icons">
-            <div className="icon">
-              <a href="">
-                <i className="fab fa-instagram"></i>
-              </a>
-            </div>
+            {contactDatas && contactDatas.social_media.fb_url !== null ? (
+              <div className="icon">
+                <a href={contactDatas.social_media.fb_url}>
+                  <i className="fab fa-facebook-f"></i>
+                </a>
+              </div>
+            ) : null}
 
-            <div className="icon">
-              <a href="">
-                <i className="fab fa-linkedin"></i>
-              </a>
-            </div>
+            {contactDatas && contactDatas.social_media.google_url !== null ? (
+              <div className="icon">
+                <a href={contactDatas.social_media.google_url}>
+                  <i className="fab fa-google"></i>
+                </a>
+              </div>
+            ) : null}
 
-            <div className="icon">
-              <a href="">
-                <i className="fab fa-facebook-f"></i>
-              </a>
-            </div>
+            {contactDatas &&
+            contactDatas.social_media.instagram_url !== null ? (
+              <div className="icon">
+                <a href={contactDatas.social_media.instagram_url}>
+                  <i className="fab fa-instagram"></i>
+                </a>
+              </div>
+            ) : null}
 
-            <div className="icon">
-              <a href="">
-                <i className="fab fa-twitter"></i>
-              </a>
-            </div>
+            {contactDatas && contactDatas.social_media.linkedin_url !== null ? (
+              <div className="icon">
+                <a href={contactDatas.social_media.linkedin_url}>
+                  <i className="fab fa-linkedin"></i>
+                </a>
+              </div>
+            ) : null}
+
+            {contactDatas && contactDatas.social_media.fb_url !== null ? (
+              <div className="icon">
+                <a href={contactDatas.social_media.fb_url}>
+                  <i className="fab fa-facebook-f"></i>
+                </a>
+              </div>
+            ) : null}
+
+            {contactDatas &&
+            contactDatas.social_media.pinterest_url !== null ? (
+              <div className="icon">
+                <a href={contactDatas.social_media.pinterest_url}>
+                  <i className="fab fa-pinterest"></i>
+                </a>
+              </div>
+            ) : null}
+
+            {contactDatas && contactDatas.social_media.twitter_url !== null ? (
+              <div className="icon">
+                <a href={contactDatas.social_media.twitter_url}>
+                  <i className="fab fa-twitter"></i>
+                </a>
+              </div>
+            ) : null}
+
+            {contactDatas && contactDatas.social_media.youtube_url !== null ? (
+              <div className="icon">
+                <a href={contactDatas.social_media.youtube_url}>
+                  <i className="fab fa-youtube"></i>
+                </a>
+              </div>
+            ) : null}
           </div>
         </div>
       </div>

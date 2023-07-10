@@ -18,6 +18,7 @@ const BannerComponent = () => {
     setSelectedDatas,
     setMessage,
     bannerDatas,
+    setCountPackage,
   } = useContext(AllDataContext);
 
   const navigate = useNavigate();
@@ -50,11 +51,12 @@ const BannerComponent = () => {
             setButtonLoading(false);
             if (res.status === 200) {
               if (res.data.data.length) {
-                navigate("/search", {
+                navigate("/search-page", {
                   state: {
                     searchedData: res.data.data,
                   },
                 });
+                setCountPackage(res.data.data.length);
               } else {
                 setMessage({
                   message: true,
@@ -72,7 +74,7 @@ const BannerComponent = () => {
               type: "error",
               desc: err.message,
             });
-            
+
             console.log(err);
             setButtonLoading(false);
           });
@@ -87,68 +89,6 @@ const BannerComponent = () => {
 
   return (
     <div className="banner">
-      <div className="wrapper search-section">
-        <div className="content-area"></div>
-
-        <div className="form-area">
-          <h2>Find Your Trek</h2>
-
-          <form onSubmit={filterData}>
-            <div className="input-section">
-              <div className="check-in-out-date">
-                <select
-                  name=""
-                  id=""
-                  onChange={(e) =>
-                    setFormValues({ ...formValues, country: e.target.value })
-                  }
-                >
-                  <option value="">Type a Destination</option>
-
-                  {countryDatas !== null
-                    ? countryDatas.map((countryData, idx) => (
-                        <option key={idx} value={countryData.country_name}>
-                          {countryData.country_name}
-                        </option>
-                      ))
-                    : "loading..."}
-                </select>
-              </div>
-
-              <div className="check-in-out-date">
-                <select
-                  name=""
-                  id=""
-                  onChange={(e) =>
-                    setFormValues({ ...formValues, duration: e.target.value })
-                  }
-                >
-                  <option value="">Number of days</option>
-                  <option value="5-7 days">1-7 days</option>
-                  <option value="7-10 days">7-10 days</option>
-                  <option value="10-16 days">10-16 days</option>
-                  <option value="16-30 days">16-30 days</option>
-                </select>
-              </div>
-
-              <div className="check-in-out-date">
-                <input
-                  type="date"
-                  placeholder="Select Month"
-                  onChange={(e) =>
-                    setFormValues({ ...formValues, tripYear: e.target.value })
-                  }
-                />
-              </div>
-
-              <button className={`${buttonLoading ? "active" : ""}`}>
-                Search
-              </button>
-            </div>
-          </form>
-        </div>
-      </div>
-
       <Swiper
         slidesPerView={1}
         centeredSlides={true}
@@ -177,6 +117,66 @@ const BannerComponent = () => {
             </SwiperSlide>
           ))}
       </Swiper>
+
+      <div className="wrapper search-section">
+        <div className="content-area"></div>
+
+        <div className="form-area">
+          <form onSubmit={filterData}>
+            <div className="input-section">
+              <div className="check-in-out-date">
+                <select
+                  name=""
+                  id=""
+                  onChange={(e) =>
+                    setFormValues({ ...formValues, country: e.target.value })
+                  }
+                >
+                  <option value="">Any Location</option>
+
+                  {countryDatas !== null
+                    ? countryDatas.map((countryData, idx) => (
+                        <option key={idx} value={countryData.country_name}>
+                          {countryData.country_name}
+                        </option>
+                      ))
+                    : "loading..."}
+                </select>
+              </div>
+
+              <div className="check-in-out-date">
+                <select
+                  name=""
+                  id=""
+                  onChange={(e) =>
+                    setFormValues({ ...formValues, duration: e.target.value })
+                  }
+                >
+                  <option value="">Any Duration</option>
+                  <option value="5-7 days">1-7 days</option>
+                  <option value="7-10 days">7-10 days</option>
+                  <option value="10-16 days">10-16 days</option>
+                  <option value="16-30 days">16-30 days</option>
+                </select>
+              </div>
+            </div>
+
+            <div className="check-in-out-date">
+              <input
+                type="date"
+                placeholder="Select Month"
+                onChange={(e) =>
+                  setFormValues({ ...formValues, tripYear: e.target.value })
+                }
+              />
+            </div>
+
+            <button className={`${buttonLoading ? "active" : ""}`}>
+              Find Your Next Trek <i className="fas fa-search"></i>
+            </button>
+          </form>
+        </div>
+      </div>
     </div>
   );
 };

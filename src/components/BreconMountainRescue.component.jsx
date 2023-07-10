@@ -12,14 +12,15 @@ const BreconMountainRescueComponent = () => {
                 alt=""
               />
 
-              <h5>Supporting</h5>
+              <div className="title-part">
+                <h5>Supporting</h5>
+                <div className="name">brecon Mountain Rescue</div>
+              </div>
 
-              <div className="name">Brecon Mountain Rescue</div>
-
-              <div className="name">
+              <p className="desc">
                 Did you know that when you book a trip with us we donate to
                 support the volunteers at Brecon Mountain Rescue.
-              </div>
+              </p>
 
               <button>Learn More</button>
             </div>

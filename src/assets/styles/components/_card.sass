@@ -289,3 +289,189 @@
         font-weight: 500
         @include flex($justify: center)
         border-radius: 6px
+
+.packageCardComponent
+  padding: 1rem
+  border: 1px solid rgba($dark, .4)
+  border-radius: 4px
+  background-color: $light
+  cursor: pointer
+
+  &:hover
+    .image-area
+      img
+        transform: scale(1.1)
+      .month-list
+        height: 100%
+
+      .available
+        opacity: 1
+
+  .image-area
+    height: 200px
+    width: 100%
+    position: relative
+    overflow: hidden
+
+    img
+      @include image()
+      transition: .4s
+
+    .month-list
+      position: absolute
+      bottom: 0
+      left: 0
+      width: 100%
+      @include flex($justify: center)
+      gap: .7rem
+      height: 40px
+      background-color: rgba($pri, .7)
+      color: $light
+      font-size: 13px
+      font-weight: 500
+      z-index: 1
+      @include trans()
+
+    .available
+      position: absolute
+      top: 3rem
+      left: 0
+      width: 100%
+      text-align: center
+      color: $light
+      font-size: 14px
+      font-weight: 500
+      opacity: 0
+      z-index: 2
+      @include trans()
+
+  .content
+    color: $darkBg
+
+    .name
+      font-size: 18px
+      font-weight: 500
+      margin: 1rem 0 .4rem
+
+    .time
+      font-size: 15px
+      text-transform: uppercase
+      color: rgba($dark, .7)
+      font-weight: 500
+
+    .mountain-peak
+      border: 1px solid $dark
+      border-left: none
+      border-right: none
+      padding: 1rem 0
+      margin: 1rem 0
+      @include flex($justify: space-between)
+
+      .height, .diff
+        font-size: 16px
+        font-weight: 500
+        @include flex($justify: flex-start)
+        gap: .5rem
+
+        img
+          height: 1.5rem
+          width: 1.5rem
+          object-fit: contain
+
+      .diff
+        @include flex($justify: flex-end)
+        i
+          margin-left: 6px
+          margin-right: 0
+
+    .desc
+      font-size: 14px
+      line-height: 1.4rem
+      text-align: justify
+      color: rgba($dark, .7)
+      margin-bottom: 1rem
+
+    .card-footer
+      @include flex($justify: space-between)
+
+      .package-price
+        @include flex($justify: space-between)
+        width: 100%
+        border-top: 1px solid #000
+        padding-top: 1rem
+
+        .prices
+          color: $sec
+          font-size: 1.3rem
+          font-weight: 600
+
+      .or
+        color: rgba($dark, .3)
+
+      .price
+        padding: .6rem 1rem
+        background-color: rgba($dark, .1)
+        border-radius: 40px
+
+.BlogCardComponent
+  position: relative
+  border: .8rem solid $light
+  height: 300px
+  overflow: hidden
+
+  &:hover
+    .image-area
+      transform: scale(1.1)
+
+  .image-area
+    height: 100%
+    width: 100%
+    transition: .4s
+
+    img
+      @include image()
+
+  .name
+    position: absolute
+    top: 0
+    width: 100%
+    padding: 1rem
+    background-color: rgba($pri, .7)
+    color: $light
+    font-weight: 500
+    z-index: 1
+
+  button
+    position: absolute
+    right: 10px
+    bottom: 10px
+    @include customButton($bgcolor: $light, $color: $dark)
+    background-color: $pri
+
+.TeamCardComponent
+  .image
+    height: 24rem
+    width: 100%
+
+    img
+      @include image()
+
+  .content
+    margin-top: 1rem
+
+    .name
+      font-size: 1.1rem
+      font-weight: 500
+
+    h6
+      font-size: .9rem
+      font-weight: 300
+      color: rgba($dark, .6)
+      margin: .5rem 0
+
+    .desc
+      margin-top: 1rem
+      line-height: 1.4rem
+      font-weight: 300
+      font-size: .9rem
+      text-align: justify

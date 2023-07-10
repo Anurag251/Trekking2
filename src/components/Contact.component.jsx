@@ -4,8 +4,9 @@ import { useContext, useState } from "react";
 import { AllDataContext } from "../context/AllData.context";
 import { apis } from "../utils/apis";
 
-export const ContactComponent = ({ contactPopup, setContactPopup }) => {
-  const { setMessage, contactDatas } = useContext(AllDataContext);
+export const ContactComponent = () => {
+  const { setMessage, contactDatas, contactPopup, setContactPopup } =
+    useContext(AllDataContext);
   const [buttonLoading, setButtonLoading] = useState(false);
   const [formValues, setFormValues] = useState({
     name: "",

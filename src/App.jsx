@@ -15,12 +15,27 @@ import SuccessMessageComponent from "./components/SuccessMessage.component";
 import BlogDetailsPage from "./pages/BlogDetails.page";
 import AboutPage from "./pages/About.page";
 import SideNavComponent from "./components/SideNav.component";
+import ReasonsToChooseUsPage from "./pages/ReasonsToChooseUs.page";
+import DestinationsPage from "./pages/Destinations.page";
+import WhyChooseUsComponent from "./components/WhyChooseUs.component";
+import HaveChatComponent from "./components/HaveChat.component";
+import BreconMountainRescueComponent from "./components/BreconMountainRescue.component";
+import NewPackageDetailsComponent from "./components/NewPackageDetails/NewPackageDetails.component";
+import SearchedPackagePage from "./pages/SearchedPackage.page";
+import BloggingPage from "./pages/Blogging.page";
+import BloggingDetailsPage from "./pages/BloggingDetails.page";
+import MeetTheTeamPage from "./pages/MeetTheTeam.page";
+import FlexibilityPromisePage from "./pages/FlexibilityPromise.page";
+import AwesomenessGuaranteePage from "./pages/AwesomenessGuarantee.page";
+import TestPage from "./pages/Test.page";
+import TrekkingInNepalPage from "./pages/TrekkingInNepal.page";
+import ToursInNepalPage from "./pages/ToursInNepal.page";
+import DestinationDetailsPage from "./pages/DestinationDetails.page";
 
 function App() {
-  const { loading } = useContext(AllDataContext);
+  const { loading, contactPopup, setContactPopup } = useContext(AllDataContext);
 
   const location = useLocation();
-  const [contactPopup, setContactPopup] = useState(false);
 
   useEffect(() => {
     window.scroll(0, 0);
@@ -37,7 +52,7 @@ function App() {
 
           <SuccessMessageComponent />
 
-          <ContactComponent contactPopup={contactPopup} setContactPopup={setContactPopup} />
+          <ContactComponent />
 
           <div className={`enquiry-sec ${contactPopup ? "active" : ""}`}>
             <button className="enquiry-icon">
@@ -63,13 +78,68 @@ function App() {
             <Route path="/packages" element={<AllPackagePage />} />
             <Route path="/search" element={<SearchPage />} />
             <Route path="/blog-details/:id" element={<BlogDetailsPage />} />
+
             <Route path="/about" element={<AboutPage />} />
+
+            <Route
+              path="/reasons-to-choose-us"
+              element={<ReasonsToChooseUsPage />}
+            />
+
+            <Route path="/destinations" element={<DestinationsPage />} />
+
+            <Route
+              path="/package-details/:id"
+              element={<NewPackageDetailsComponent />}
+            />
+
+            <Route path="/search-page" element={<SearchedPackagePage />} />
+
+            <Route
+              path="/trekking-in-nepal"
+              element={<TrekkingInNepalPage />}
+            />
+
+            <Route path="/tours-in-nepal" element={<ToursInNepalPage />} />
+
+            <Route path="/blogging" element={<BloggingPage />} />
+            <Route
+              path="/blogging-details/:id"
+              element={<BloggingDetailsPage />}
+            />
+            <Route path="/meet-the-team" element={<MeetTheTeamPage />} />
+            <Route
+              path="/flexibility-promise"
+              element={<FlexibilityPromisePage />}
+            />
+
+            <Route
+              path="/awesomeness-guarantee"
+              element={<AwesomenessGuaranteePage />}
+            />
+
+            <Route
+              path="/destination-details/:id"
+              element={<DestinationDetailsPage />}
+            />
+
+            <Route path="/test-pages" element={<TestPage />} />
           </Routes>
 
-          <FooterComponent
-            contactPopup={contactPopup}
-            setContactPopup={setContactPopup}
-          />
+          <div className="mountain-image">
+            <img
+              src="https://i.assetzen.net/i/WAlfeddC2PDL/w:1920/h:894/q:70.webp"
+              alt=""
+            />
+          </div>
+
+          <WhyChooseUsComponent />
+
+          {location.pathname === "/" ? <BreconMountainRescueComponent /> : null}
+
+          <HaveChatComponent />
+
+          <FooterComponent />
         </Fragment>
       )}
     </div>

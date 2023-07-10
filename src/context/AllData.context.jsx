@@ -19,6 +19,8 @@ export const AllDataProvider = ({ children }) => {
   const [filterPackage, setFilterPackage] = useState(false);
   const [contactDatas, setContactDatas] = useState(null);
   const [quickLinkDatas, setQuickLinkDatas] = useState(null);
+  const [contactPopup, setContactPopup] = useState(false);
+  const [countPackage, setCountPackage] = useState(null);
 
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState({
@@ -31,6 +33,7 @@ export const AllDataProvider = ({ children }) => {
   const [selectedCate, setSelectedCate] = useState(null);
   const [searchData, setSearchData] = useState(null);
   const [selectedDatas, setSelectedDatas] = useState(null);
+  const [detailsPageNav, setDetailsPageNav] = useState("TripOverview");
 
   useEffect(() => {
     if (
@@ -77,6 +80,7 @@ export const AllDataProvider = ({ children }) => {
       .then((res) => {
         if (res.status === 200) {
           setTripDatas(res.data.data);
+          setCountPackage(res.data.data.length);
           // console.log("trip: ");
           // console.log(res.data.data);
         }
@@ -90,7 +94,7 @@ export const AllDataProvider = ({ children }) => {
       .get("/home/content")
       .then((res) => {
         if (res.status === 200) {
-          setBlogDatas(res.data.data.latest_post);
+          setBlogDatas(res.data.data && res.data.data.latest_post);
           // console.log("blog: ");
           // console.log(res.data.data.latest_post);
         }
@@ -246,6 +250,12 @@ export const AllDataProvider = ({ children }) => {
         setContactDatas,
         quickLinkDatas,
         setQuickLinkDatas,
+        contactPopup,
+        setContactPopup,
+        detailsPageNav,
+        setDetailsPageNav,
+        countPackage,
+        setCountPackage,
       }}
     >
       {children}

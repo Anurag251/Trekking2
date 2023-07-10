@@ -2,11 +2,17 @@ import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useContext } from "react";
 import { AllDataContext } from "../context/AllData.context";
-import Logo from "../assets/images/logo-sh.png";
+import Logo from "../assets/images/SACRED HIMALAYA LOGOA-03.svg";
+import telephoneImage from "../assets/images/telephone.png";
 
 const HeaderComponent = () => {
-  const { categoriesDatas, setSideNavHidden, sideNavHidden } =
-    useContext(AllDataContext);
+  const {
+    categoriesDatas,
+    setSideNavHidden,
+    sideNavHidden,
+    contactPopup,
+    setContactPopup,
+  } = useContext(AllDataContext);
   const [selectedCat, setSelectedCat] = useState(null);
   const [selectedCatId, setSelectedCatId] = useState(null);
   const [destinationsSelected, setDestinationsSelected] = useState(false);
@@ -26,74 +32,237 @@ const HeaderComponent = () => {
     <React.Fragment>
       <header>
         <div className="wrapper">
-          <div className="logo">
-            <img src={Logo} alt="logo" />
+          <div className="header-top">
+            <Link to="/">
+              <div className="logo">
+                <img src={Logo} alt="logo" />
+              </div>
+            </Link>
+
+            <div className="phoneNumber">
+              <a href="#" className={`nav-btn`}>
+                <div className="icon">
+                  <img src={telephoneImage} alt="" />
+                </div>
+                02920 003216
+              </a>
+              <p>Direct Call or WhatsApp 24/7</p>
+            </div>
           </div>
 
-          <ul className="nav-links">
-            <li>
-              <Link to="/">
+          <div className="inner">
+            <ul className="nav-links">
+              {/* <li className="drop-menu">
                 <button
                   className={`nav-btn ${
-                    location.pathname === "/" ? "active" : ""
+                    location.pathname === "/trekking-in-nepal" ? "active" : ""
                   }`}
                 >
-                  Home
+                  Trekking <i className="fas fa-angle-down"></i>
                 </button>
-              </Link>
-            </li>
 
-            <li>
-              <button
-                className="nav-btn"
-                onClick={() => setDestinationsSelected(!destinationsSelected)}
-              >
-                Destinations <i className="fas fa-angle-down"></i>
-              </button>
-            </li>
+                <ul className="drop-down">
+                  <li>
+                    <Link to="/destination-details/nepal">
+                      <button
+                        className={`${
+                          location.pathname === "/destination-details/nepal"
+                            ? "active"
+                            : ""
+                        }`}
+                      >
+                        Nepal
+                      </button>
+                    </Link>
+                  </li>
 
-            <li>
-              <Link to="/knowledge">
+                  <li>
+                    <Link to="/destination-details/bhutan">
+                      <button
+                        className={`${
+                          location.pathname === "/destination-details/bhutan"
+                            ? "active"
+                            : ""
+                        }`}
+                      >
+                        Bhutan
+                      </button>
+                    </Link>
+                  </li>
+
+                  <li>
+                    <Link to="/destination-details/tibet">
+                      <button
+                        className={`${
+                          location.pathname === "/destination-details/tibet"
+                            ? "active"
+                            : ""
+                        }`}
+                      >
+                        Tibet
+                      </button>
+                    </Link>
+                  </li>
+                </ul>
+              </li> */}
+
+              <li>
+                <Link to="/destination-details/nepal">
+                  <button
+                    className={`nav-btn ${
+                      location.pathname === "/destination-details/nepal" ? "active" : ""
+                    }`}
+                  >
+                    Nepal Trek
+                  </button>
+                </Link>
+              </li>
+
+              <li>
+                <Link to="/destination-details/bhutan">
+                  <button
+                    className={`nav-btn ${
+                      location.pathname === "/destination-details/bhutan" ? "active" : ""
+                    }`}
+                  >
+                    Bhutan Trek
+                  </button>
+                </Link>
+              </li>
+
+              <li>
+                <Link to="/search-page">
+                  <button
+                    className={`nav-btn ${
+                      location.pathname === "/search-page" ? "active" : ""
+                    }`}
+                  >
+                    Tours
+                  </button>
+                </Link>
+              </li>
+
+              <li>
+                <Link to="/tours-in-nepal">
+                  <button
+                    className={`nav-btn ${
+                      location.pathname === "/tours-in-nepal" ? "active" : ""
+                    }`}
+                  >
+                    Nepal Marathon
+                  </button>
+                </Link>
+              </li>
+
+              <li>
+                <Link to="/">
+                  <button
+                    className={`nav-btn ${
+                      location.pathname === "/noooo" ? "active" : ""
+                    }`}
+                  >
+                    Lama Land Homestay
+                  </button>
+                </Link>
+              </li>
+
+             {/*  <li>
                 <button
-                  className={`nav-btn ${
-                    location.pathname === "/knowledge" ? "active" : ""
-                  }`}
+                  className="nav-btn"
+                  onClick={() => setDestinationsSelected(!destinationsSelected)}
                 >
-                  Knowledge Centre
+                  Destination <i className="fas fa-angle-down"></i>
                 </button>
-              </Link>
-            </li>
+              </li> */}
 
-            <li>
-              <Link to="/packages">
+              <li className="drop-menu">
+                <button className="nav-btn">
+                  About <i className="fas fa-angle-down"></i>
+                </button>
+
+                <ul className="drop-down">
+                  <li>
+                    <Link to="/meet-the-team">
+                      <button
+                        className={`${
+                          location.pathname === "/meet-the-team" ? "active" : ""
+                        }`}
+                      >
+                        Meet The Team
+                      </button>
+                    </Link>
+                  </li>
+
+                  <li>
+                    <Link to="/reasons-to-choose-us">
+                      <button
+                        className={`${
+                          location.pathname === "/reasons-to-choose-us"
+                            ? "active"
+                            : ""
+                        }`}
+                      >
+                        Reasons To Choose Us
+                      </button>
+                    </Link>
+                  </li>
+
+                  <li>
+                    <Link to="/flexibility-promise">
+                      <button
+                        className={`${
+                          location.pathname === "/flexibility-promise"
+                            ? "active"
+                            : ""
+                        }`}
+                      >
+                        Flexibility Promise
+                      </button>
+                    </Link>
+                  </li>
+
+                  <li>
+                    <Link to="/awesomeness-guarantee">
+                      <button
+                        className={`${
+                          location.pathname === "/awesomeness-guarantee"
+                            ? "active"
+                            : ""
+                        }`}
+                      >
+                        Awesomeness Guarantee
+                      </button>
+                    </Link>
+                  </li>
+                </ul>
+              </li>
+
+              <li>
                 <button
-                  className={`nav-btn ${
-                    location.pathname === "/packages" ? "active" : ""
-                  }`}
+                  onClick={() => setContactPopup(!contactPopup)}
+                  className={`nav-btn`}
                 >
-                  Packages
+                  Contact Us
                 </button>
-              </Link>
-            </li>
+              </li>
 
-            <li>
-              <Link to="/search">
+              {/* <li className="loginMember">
+              <a href="#">
                 <button
-                  className={`nav-btn ${
-                    location.pathname === "/search" ? "active" : ""
-                  }`}
+                  onClick={() => setContactPopup(!contactPopup)}
+                  className={`nav-btn`}
                 >
-                  Search
+                  Members <br /> Login
                 </button>
-              </Link>
-            </li>
-          </ul>
-
-          <div
-            className={`side-nav-btn ${sideNavHidden ? "active" : ""}`}
-            onClick={() => setSideNavHidden(!sideNavHidden)}
-          >
-            <div className="das"></div>
+              </a>
+            </li> */}
+            </ul>
+            <div
+              className={`side-nav-btn ${sideNavHidden ? "active" : ""}`}
+              onClick={() => setSideNavHidden(!sideNavHidden)}
+            >
+              <div className="das"></div>
+            </div>
           </div>
         </div>
       </header>
@@ -134,7 +303,7 @@ const HeaderComponent = () => {
                 .filter((data, idx) => idx < 15)
                 .map((data, idx) => (
                   <li key={idx}>
-                    <Link to={`/details/${data.id}`}>{data.title}</Link>
+                    <Link to={`/package-details/${data.id}`}>{data.title}</Link>
                   </li>
                 ))}
           </ul>
