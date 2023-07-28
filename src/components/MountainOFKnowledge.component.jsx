@@ -1,74 +1,28 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useContext } from "react";
+import NewPackageCardComponent from "./NewPackageCard.component";
+import { AllDataContext } from "../context/AllData.context";
 
 const MountainOFKnowledgeComponent = () => {
+  const { tripDatas } = useContext(AllDataContext);
+
   return (
-    <div className="MountainOFKnowledge">
-      <section>
+    <div className="AdVentuRes">
+      <section className="bg-color">
         <div className="wrapper">
           <div className="title-part">
-            <h5>CHECK OUT OUR</h5>
+            <h5>Sacred Himalaya Best</h5>
 
-            <div className="name">Mountain of Knowledge</div>
+            <div className="name">Recommended Trip</div>
           </div>
 
           <div className="list">
-            <Link to="/blogging">
-              <div className="item">
-                <div className="image-area">
-                  <img
-                    src="https://i.assetzen.net/i/7qEXqCd7V6TI/w:500/h:500/q:70.webp"
-                    alt=""
-                  />
-                </div>
-
-                <div className="content">
-                  <div className="name">podcast</div>
-                  <p className="desc">
-                    Listen to our latest ramblings on the monthly podcast
-                    episodes!
-                  </p>
-                </div>
-              </div>
-            </Link>
-
-            <Link to="/blogging">
-              <div className="item">
-                <div className="image-area">
-                  <img
-                    src="https://i.assetzen.net/i/7qEXqCd7V6TI/w:500/h:500/q:70.webp"
-                    alt=""
-                  />
-                </div>
-
-                <div className="content">
-                  <div className="name">Knowledge centre</div>
-                  <p className="desc">
-                    All of your questions and concerns answered in plain, no
-                    nonsense english.
-                  </p>
-                </div>
-              </div>
-            </Link>
-
-            <Link to="/blogging">
-              <div className="item">
-                <div className="image-area">
-                  <img
-                    src="https://i.assetzen.net/i/7qEXqCd7V6TI/w:500/h:500/q:70.webp"
-                    alt=""
-                  />
-                </div>
-
-                <div className="content">
-                  <div className="name">blog</div>
-                  <p className="desc">
-                    Read our latest blog articles, straight from experts of the
-                    mountains!
-                  </p>
-                </div>
-              </div>
-            </Link>
+            {tripDatas &&
+              tripDatas
+                .filter((data) => data.recommended)
+                .filter((data, idx) => idx < 3)
+                .map((data, idx) => (
+                  <NewPackageCardComponent key={idx} data={data} />
+                ))}
           </div>
         </div>
       </section>

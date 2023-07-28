@@ -11,9 +11,9 @@ const SacredCommunityComponent = () => {
       <section>
         <div className="wrapper">
           <div className="title-part">
-            <h5>READ WHAT'S HAPPENING IN THE</h5>
+            <h5>Sacred Himalaya</h5>
 
-            <div className="name">sacred community</div>
+            <div className="name">Community Action</div>
           </div>
 
           <div className="list">

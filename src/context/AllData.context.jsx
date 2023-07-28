@@ -15,12 +15,21 @@ export const AllDataProvider = ({ children }) => {
   const [categoriesDatas, setCategoriesDatas] = useState(null);
   const [galleryDatas, setGalleryDatas] = useState(null);
   const [aboutDetails, setAboutDetails] = useState(null);
+  const [socialMedia, setSocialMedia] = useState(null);
+  const [aboutSacred, setAboutSacred] = useState(null);
   const [sideNavHidden, setSideNavHidden] = useState(false);
   const [filterPackage, setFilterPackage] = useState(false);
   const [contactDatas, setContactDatas] = useState(null);
   const [quickLinkDatas, setQuickLinkDatas] = useState(null);
+  const [bookDatas, setBookDatas] = useState(null);
   const [contactPopup, setContactPopup] = useState(false);
   const [countPackage, setCountPackage] = useState(null);
+  const [showFilter, setShowFilter] = useState(false);
+  const [bookingPopupForm, setBookingPopupForm] = useState({
+    isBookingPopupForm: false,
+    date: "",
+    price: "",
+  });
 
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState({
@@ -80,7 +89,7 @@ export const AllDataProvider = ({ children }) => {
       .then((res) => {
         if (res.status === 200) {
           setTripDatas(res.data.data);
-          setCountPackage(res.data.data.length);
+          setCountPackage(res.data.data?.length);
           // console.log("trip: ");
           // console.log(res.data.data);
         }
@@ -209,6 +218,45 @@ export const AllDataProvider = ({ children }) => {
       .catch((err) => {
         console.log(err);
       });
+
+    apis
+      .get("/social")
+      .then((res) => {
+        if (res.status === 200) {
+          setSocialMedia(res.data.data);
+          // console.log("review: ");
+          // console.log(res.data.data);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
+    apis
+      .get("/sacred")
+      .then((res) => {
+        if (res.status === 200) {
+          setAboutSacred(res.data.data);
+          // console.log("review: ");
+          // console.log(res.data.data);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
+    apis
+      .get("/book")
+      .then((res) => {
+        if (res.status === 200) {
+          setBookDatas(res.data.data);
+          // console.log("review: ");
+          // console.log(res.data.data);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }, []);
 
   return (
@@ -256,6 +304,16 @@ export const AllDataProvider = ({ children }) => {
         setDetailsPageNav,
         countPackage,
         setCountPackage,
+        showFilter,
+        setShowFilter,
+        bookingPopupForm,
+        setBookingPopupForm,
+        socialMedia,
+        setSocialMedia,
+        aboutSacred,
+        setAboutSacred,
+        bookDatas,
+        setBookDatas,
       }}
     >
       {children}

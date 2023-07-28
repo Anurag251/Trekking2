@@ -172,6 +172,7 @@ const PackageDetailComponent = ({ selectedData }) => {
             selectedData={selectedData}
             choosenPrice={choosenPrice}
             setChoosenPrice={setChoosenPrice}
+            popup={true}
           />
 
           <div className="best-packages">

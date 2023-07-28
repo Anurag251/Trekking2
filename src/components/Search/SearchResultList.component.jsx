@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AllDataContext } from "../../context/AllData.context";
 import SearchPackageCardComponent from "./SearchPackageCard.component";
 
@@ -11,6 +11,7 @@ const SearchResultListComponent = ({ searchData }) => {
     setSearchData,
     selectedDatas,
     setSelectedDatas,
+    setShowFilter,
   } = useContext(AllDataContext);
 
   useEffect(() => {
@@ -25,6 +26,16 @@ const SearchResultListComponent = ({ searchData }) => {
 
   return (
     <div className="SearchResultListComponent">
+      <div className="search-filter-title-area">
+        <h4 className="search-filter-title">Tours</h4>
+
+        <button
+          className="search-filter-btn"
+          onClick={() => setShowFilter(true)}
+        >
+          <i className="fas fa-filter"></i>
+        </button>
+      </div>
       {selectedDatas !== null
         ? selectedDatas.map((data, idx) => (
             <SearchPackageCardComponent key={idx} data={data} />

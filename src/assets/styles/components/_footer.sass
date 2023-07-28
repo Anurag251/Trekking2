@@ -4,12 +4,11 @@
 
 footer
   padding: 3rem 0 2rem
-  @include bgImage()
   position: relative
+  background-color: #E9DAC7
 
   &::before
     content: ''
-    @include dark($opacity: .8)
 
   .footer-list
     @include grid($columns: 1fr 1fr 1fr 1fr)
@@ -17,7 +16,7 @@ footer
     z-index: 2
 
     .item
-      color: $light
+      color: $dark
       margin-bottom: 1rem
 
       .logo, .f-title
@@ -25,7 +24,7 @@ footer
 
         img
           height: 50px
-          width: 150px
+          width: 170px
           object-fit: contain
 
       .f-title
@@ -33,15 +32,24 @@ footer
         font-weight: 500
 
       ul
+        &.cate-list
+          li
+            &:hover
+              color: $pri
+
         li
           padding: .4rem 0
           cursor: pointer
+
+          &:hover
+            a
+              color: $pri
 
           i
             margin-right: 5px
 
           a
-            color: $light
+            color: $dark
             width: 100%
 
       .desc
@@ -54,10 +62,12 @@ footer
     position: relative
     padding-top: 2rem
     margin-top: 2rem
-    border-top: 1px solid #ADADAD
-    color: $light
+    border-top: 1px solid lighten($dark, 70%)
+    color: $dark
     z-index: 2
     @include flex($justify: space-between)
+    flex-wrap: wrap
+    gap: 2rem
 
     .icons
       @include flex($justify: flex-end)
@@ -66,4 +76,4 @@ footer
         padding: 0 1rem
 
         a
-          color: $light
+          color: $dark

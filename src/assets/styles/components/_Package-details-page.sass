@@ -215,90 +215,7 @@
                 text-align: justify
 
     .package-booking-area
-      .start-booking
-        padding: 1.5rem
-        background-color: $light
-
-        .title-sec
-          @include flex($justify: space-between)
-          margin-bottom: 1rem
-
-          .form-title
-            font-size: 20px
-            font-weight: 500
-
-          .price
-            font-size: 20px
-            color: $sec
-            font-weight: 500
-
-            span
-              color: $sec
-              font-size: 12px
-
-        .booking-form
-          .form-inputs
-            margin-top: 2rem
-
-            .input-group
-              @include flex($justify: space-between)
-              margin-bottom: 2rem
-
-              .group
-                width: 46%
-
-            .group
-              position: relative
-              height: 57px
-              width: 100%
-              border-bottom: 1px solid $sec
-              display: flex
-              align-items: flex-end
-
-              label
-                position: absolute
-                top: 0
-                left: 0
-                font-size: 12px
-                text-transform: uppercase
-
-              input, textarea, select
-                height: 70%
-                width: 100%
-                padding: 1rem
-                font-size: 14px
-
-              select
-                height: 100%
-                margin-bottom: -10px
-
-          .submit-btn
-            font-weight: 600
-            margin-top: 1rem
-            @include customButton($bgcolor: $pri, $color: $light)
-
-            font-size: 16px
-            @include flex($justify: flex-start)
-            gap: 10px
-
-            &.active
-              pointer-events: none
-              opacity: .8
-
-              &::before
-                display: block
-
-            &::before
-              content: ''
-              height: 15px
-              width: 15px
-              border: 2px solid transparent
-              border-top: 2px solid $light
-              border-bottom: 2px solid $light
-              border-radius: 50%
-              animation: loadingBtn .8s infinite cubic-bezier(0.77, 0, 0.175, 1)
-              display: none
-
+      
       .best-packages
         margin-top: 50px
 
@@ -363,6 +280,93 @@
                   span
                     color: $sec
                     font-size: 10px
+
+.start-booking
+  padding: 1.5rem
+  background-color: $light
+
+  .title-sec
+    @include flex($justify: space-between)
+    margin-bottom: 1rem
+
+    .form-title
+      font-size: 1.4rem
+      font-weight: 500
+
+      small
+        font-size: 1rem
+
+    .price
+      font-size: 20px
+      color: $sec
+      font-weight: 500
+
+      span
+        color: $sec
+        font-size: 12px
+
+  .booking-form
+    .form-inputs
+      margin-top: 2rem
+
+      .input-group
+        @include flex($justify: space-between)
+        margin-bottom: 2rem
+
+        .group
+          width: 46%
+
+      .group
+        position: relative
+        height: 57px
+        width: 100%
+        border-bottom: 1px solid $pri
+        display: flex
+        align-items: flex-end
+
+        label
+          position: absolute
+          top: 0
+          left: 0
+          font-size: 12px
+          text-transform: uppercase
+
+        input, textarea, select
+          height: 70%
+          width: 100%
+          padding: 1rem
+          font-size: 14px
+
+        select
+          height: 100%
+          margin-bottom: -10px
+
+    .submit-btn
+      font-weight: 600
+      margin-top: 1rem
+      @include customButton($bgcolor: $pri, $color: $light)
+
+      font-size: 16px
+      @include flex($justify: flex-start)
+      gap: 10px
+
+      &.active
+        pointer-events: none
+        opacity: .8
+
+        &::before
+          display: block
+
+      &::before
+        content: ''
+        height: 15px
+        width: 15px
+        border: 2px solid transparent
+        border-top: 2px solid $light
+        border-bottom: 2px solid $light
+        border-radius: 50%
+        animation: loadingBtn .8s infinite cubic-bezier(0.77, 0, 0.175, 1)
+        display: none
 
   .Package-details-page
     .package-detail

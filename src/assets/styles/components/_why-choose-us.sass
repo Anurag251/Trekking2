@@ -8,6 +8,7 @@
     font-size: 18px
     font-weight: 300
     margin: .5rem 0
+    text-transform: uppercase
 
   .name
     font-weight: 600
@@ -28,9 +29,9 @@
     .item
       text-align: center
 
-      i
-        font-size: 3rem
-        color: #2295CC
+      img
+        height: 2.3rem
+        width: 2.3rem
         margin-bottom: 2rem
 
       .name
@@ -40,8 +41,9 @@
         color: $light
         margin-bottom: 1rem
 
-        &:nth-child(3)
-          font-style: italic
+      .desc
+        font-style: italic
+        color: $light
 
 .BreconMountainRescue
   background-color: #FCFBFC
@@ -211,8 +213,8 @@
       span
         font-size: 20px
         font-weight: 600
-        letter-spacing: 2px
-        font-family: $font
+        letter-spacing: 1.3px
+        text-transform: capitalize
 
     p
       font-size: 14px
@@ -220,33 +222,41 @@
 
 .HelpfulYetis
   .list
-    @include grid($columns: 1fr 1fr 1fr 1fr 2fr)
+    @include grid($columns: 1fr 1fr 1fr)
     align-items: flex-start
-    margin-top: 2rem
+    margin-top: 3rem
 
     .item
+      @include flex($justify: flex-start)
+      flex-direction: column
+      gap: .5rem
 
       &:nth-last-child(1)
+        display: block
         margin-top: 1rem
+        grid-column-end: span 3
 
       .image-area
-        height: 9rem
-        width: 100%
+        height: 8rem
+        width: 8rem
         margin-bottom: .5rem
+        border-radius: 50%
+        overflow: hidden
 
         img
           @include image()
 
       .name
-        font-size: 16px
-        font-weight: 400
-        color: rgba($dark, .7)
+        font-size: 1.2rem
+        font-weight: 500
+        color: rgba($dark, .8)
+        text-align: center
 
       p
         text-align: center
-        color: rgba($dark, .7)
+        color: rgba($dark, .9)
         margin-bottom: 1rem
-        font-size: .9rem
+        font-size: 1.6rem
 
       .button-group
         @include flex($justify: center)
@@ -259,6 +269,7 @@
           @include flex($justify: flex-start)
           gap: 8px
           cursor: pointer
+          color: $dark
 
 .DownloadTripGuide
   background-color: $darkBg
@@ -305,6 +316,11 @@
       height: 50px
 
 .AboutSacred
+  .title
+    max-width: 58rem
+    margin: 0 auto
+    margin-bottom: 3rem
+
   .item
     @include flex($justify: stretch)
     gap: 2rem
@@ -320,7 +336,7 @@
           filter: blur(0)
 
     .image-area
-      height: 20rem
+      height: 23rem
       filter: blur(10px)
       @include trans()
 
@@ -329,7 +345,6 @@
 
     .content
       p
-        margin-bottom: 1rem
         line-height: 1.7rem
         font-size: 17px
         color: rgba($dark, .7)
@@ -343,6 +358,8 @@
       .button-group
         @include flex($justify: center)
         gap: 1rem
+        margin-top: 1rem
+        margin-bottom: .3rem
 
         a
           &:nth-child(2)
@@ -399,11 +416,10 @@
       margin-bottom: 1.5rem
       font-weight: 500
 
-    ul
-      li
-        margin-bottom: 1.5rem
-        font-size: 16px
-        font-weight: 300
+    p
+      margin-bottom: 1.5rem
+      font-size: 16px
+      font-weight: 300
 
   .with-image
     @include grid($columns: 1fr 1fr)
@@ -423,15 +439,14 @@
 .AboutPageGallery
   .mySwiper
     .swiper-slide
-      height: 440px
+      height: 360px
       width: 300px !important
       @include flex($justify: center)
       @include trans()
       opacity: .4
 
       &.swiper-slide-active
-        height: 440px
-        width: 800px !important
+        width: 600px !important
         opacity: 1
 
       img
@@ -463,17 +478,17 @@
     p
       font-size: .97rem
       font-weight: 300
-      margin-bottom: 2rem
       line-height: 1.5rem
 
     button
+      margin-top: 2rem
       @include customButton($bgcolor: $darkBg, $color: $light)
       height: 50px
       text-transform: uppercase
+
   .package-footer
     padding: 1.4rem
     background-color: $pri
-    margin-top: 2rem
     text-align: center
     color: $light
 
@@ -504,6 +519,7 @@
 
     .item
       cursor: pointer
+
       .image-area
         height: 300px
         width: 100%
@@ -528,7 +544,9 @@
     .item-list
       @include flex($justify: center)
       color: $light
-      gap: 5rem
+      flex-wrap: wrap
+      column-gap: 5rem
+      row-gap: 1rem
 
       li
         @include flex($justify: flex-start)
@@ -559,7 +577,9 @@
   .top-area
     padding: 1rem 0
     @include flex($justify: center)
-    gap: 2rem
+    flex-wrap: wrap
+    column-gap: 2rem
+    row-gap: 1rem
 
     .bookNowNutton
       @include customButton($bgcolor: $sec, $color: $light)
@@ -615,6 +635,9 @@
     text-align: center
     font-weight: 600
     text-transform: capitalize
+
+    i
+      display: none
 
   .main-container
     margin-top: 2rem
@@ -736,6 +759,9 @@
     font-weight: 600
     text-transform: capitalize
 
+    i
+      display: none
+
   .main-container
     margin-top: 2rem
     padding: 2rem
@@ -772,7 +798,10 @@
 
           .item-body
             margin-top: 1rem
-            max-height: 3000px
+            grid-template-rows: 1fr
+
+            p
+              margin-bottom: 1rem
 
         .item-title
           position: relative
@@ -808,16 +837,18 @@
 
         .item-body
           margin-top: 0
-          max-height: 0
           overflow: hidden
           @include trans()
+          display: grid
+          grid-template-rows: 0fr
+          transition: .4s
 
           p
+            overflow: hidden
             font-size: 1rem
             font-weight: 300
             color: rgba($dark, .8)
             line-height: 1.5rem
-            margin-bottom: 1rem
 
             &:nth-last-child(1)
               margin-bottom: 0
@@ -841,6 +872,9 @@
     text-align: center
     font-weight: 600
     text-transform: capitalize
+
+    i
+      display: none
 
   .main-container
     margin-top: 2rem
@@ -897,12 +931,15 @@
 
     .year-list
       position: relative
-      margin-top: 2rem
 
       .item
         border-bottom: 1px solid rgba($dark, .3)
         padding: 1.5rem 0
         cursor: pointer
+
+        &:nth-last-child(1)
+          border-bottom: 0
+          padding-bottom: 0
 
         &:nth-child(1)
           padding-top: 0
@@ -943,7 +980,7 @@
               padding-top: 1.5rem
               margin-top: 1.5rem
               border-top: 1px solid rgba($dark, .3)
-              @include grid($columns: 1.5fr 2fr 1fr .8fr)
+              @include grid($columns: 1.5fr 1.5fr 1.5fr 1fr)
               align-items: center
 
               &.little
@@ -1254,6 +1291,9 @@
     font-weight: 600
     text-transform: capitalize
 
+    i
+      display: none
+
   .main-container
     margin-top: 2rem
     padding: 2rem
@@ -1350,12 +1390,33 @@
     align-items: flex-start
     gap: 1rem
 
+    .filter-section-area
+      width: 25%
+
     .FilterSection
+      width: 100%
       position: sticky
       top: 9rem
-      width: 25%
       padding: 1rem
       border: 1px solid rgba($dark, .3)
+      z-index: 2
+
+      .filter-section-close
+        position: absolute
+        top: -2.3rem
+        right: 0
+        height: 2rem
+        width: 2rem
+        background-color: $light
+        @include flex($justify: center)
+        color: $sec
+        border: 2px solid $sec
+        cursor: pointer
+        display: none
+
+        &:hover
+          background-color: $sec
+          color: $light
 
       .form
         padding-bottom: 1rem
@@ -1429,6 +1490,26 @@
 
     .SearchResultListComponent
       width: 75%
+
+      .search-filter-title-area
+        @include flex($justify: space-between)
+        margin-bottom: 1rem
+        display: none
+
+        .search-filter-title
+          font-size: 1.5rem
+          font-weight: 500
+
+        .search-filter-btn
+          @include flex($justify: center)
+          height: 2.4rem
+          width: 2.4rem
+          background-color: $pri
+          border-radius: .2rem
+
+          i
+            font-size: 1.1rem
+            color: $light
 
       .SearchPackageCardComponent
         padding: 1rem
@@ -1535,6 +1616,7 @@
             text-align: justify
             color: rgba($dark, .7)
             max-height: 4rem
+            height: 4rem
             overflow: hidden
 
           .readMore
@@ -1594,16 +1676,57 @@
           text-align: justify
 
   &.BloggingDetailsPage
+    .book-list
+      @include flex($justify: center)
+      gap: 2rem
+      flex-wrap: wrap
+      margin-top: 2rem
+
+      .book-card
+        img
+          height: 13rem
+          width: 10rem
+          object-fit: cover
+
+        .name
+          font-size: 1rem
+          font-weight: 400
+          text-align: center
+          margin-top: .5rem
+
     .blogging-area
+      display: block
+
+      .with-image
+        .about-content
+          text-align: center
+
+        .image
+          margin-bottom: 2rem
+
+          img
+            @include image()
+
       .blogging-cards-area
-        flex: 70%
+        flex: 100%
         width: 100%
+
+        h1
+          text-align: center
+
+        p
+          text-align: center
+          font-size: 1rem
+          margin-bottom: 1rem
 
         .desc
           text-align: justify
           line-height: 1.5rem
           color: rgba($dark, .8)
           margin-top: .7rem
+
+          img
+            @include image()
 
       .blogging-search-area
         flex: 30%
@@ -1791,12 +1914,11 @@
 
 .FlexibilityPromisePage
   .FlexibilityPromiseList
-
     .FlexibilityPromiseComponent
       .flexibility-promise-title
-        font-size: 1.5rem
+        font-size: 2rem
         margin-bottom: 1rem
-        font-family: $font
+        text-transform: capitalize
 
       p
         margin-bottom: 1rem
@@ -1816,9 +1938,8 @@
       margin-bottom: 2rem
 
       .guarantee-title
-        font-size: 1.5rem
+        font-size: 2rem
         margin-bottom: 1rem
-        font-family: $font
 
       .guarantee-image
         width: 100%
@@ -2615,3 +2736,78 @@
       font-size: 13px
       margin-top: 5px
       line-height: 1.2rem
+
+.bookingPopupForm
+  position: fixed
+  top: 0
+  left: 0
+  height: 100%
+  width: 100%
+  @include flex($justify: center)
+  align-items: flex-start
+  z-index: 100
+  pointer-events: none
+  padding: 4rem 1rem
+
+  &.active
+    overflow-y: auto
+    pointer-events: auto
+
+    .bookingPopupFormBg
+      opacity: 1
+
+    .start-booking
+      opacity: 1
+      transform: scale(1)
+
+  .bookingPopupFormBg
+    position: fixed
+    top: 0
+    left: 0
+    height: 100%
+    width: 100%
+    background-color: rgba($dark, .5)
+    backdrop-filter: blur(5px)
+    opacity: 0
+    z-index: 1
+    transition: 0.4s cubic-bezier(0.74, 0.29, 0.28, 0.82)
+
+  .start-booking
+    position: relative
+    z-index: 2
+    opacity: 0
+    transform: scale(.95)
+    transition: 0.4s cubic-bezier(0.74, 0.29, 0.28, 0.82)
+
+    .bookingPopupFormClose
+      position: absolute
+      top: -2.5rem
+      right: 0
+      height: 2rem
+      width: 2rem
+      background-color: $light
+      @include flex($justify: center)
+      cursor: pointer
+      font-size: 1.3rem
+
+      &:hover
+        background-color: $sec
+        color: $light
+
+.trustpilot-widget
+  margin-top: 1rem
+
+.trust-pilot-sec
+  width: 100%
+  @include flex($justify: center)
+  flex-direction: column
+  margin-top: 1.5rem
+
+  h3
+    font-size: 1.5rem
+    font-weight: 500
+    margin-bottom: .5rem
+    color: $dark
+
+  img
+    height: 6rem

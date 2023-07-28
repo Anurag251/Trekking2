@@ -135,7 +135,7 @@ const BannerComponent = () => {
                   <option value="">Any Location</option>
 
                   {countryDatas !== null
-                    ? countryDatas.map((countryData, idx) => (
+                    ? countryDatas?.map((countryData, idx) => (
                         <option key={idx} value={countryData.country_name}>
                           {countryData.country_name}
                         </option>

@@ -1,24 +1,61 @@
-import React from "react";
-import FlexibilityPromiseComponent from "../components/FlexibilityPromise.component";
-import BreconMountainRescueComponent from "../components/BreconMountainRescue.component";
+import { Fragment, useContext, useEffect, useState } from "react";
 import PageBannerComponent from "../components/PageBanner.component";
+import { AllDataContext } from "../context/AllData.context";
 
 const FlexibilityPromisePage = () => {
+  const { aboutDetails } = useContext(AllDataContext);
+
+  const [thisPageData, setThisPageData] = useState(null);
+
+  useEffect(() => {
+    aboutDetails?.forEach((data) => {
+      if (data.slug === "flexibility-promise") {
+        setThisPageData(data);
+      }
+    });
+  }, [aboutDetails]);
+
   return (
-    <div className="FlexibilityPromisePage">
-      <PageBannerComponent image="https://i.assetzen.net/i/Cull2QUZyWCT/w:1920/h:500/q:70.webp">
-        flexibility promise
+    <div className="ReasonsToChooseUs">
+      <PageBannerComponent image={thisPageData?.image?.original_image}>
+        {thisPageData?.title}
       </PageBannerComponent>
 
-      <section>
-        <div className="wrapper">
-          <div className="FlexibilityPromiseList">
-            <FlexibilityPromiseComponent />
-          </div>
-        </div>
-      </section>
+      <div className="wrapper">
+        {thisPageData?.description !== null ? (
+          <section>
+            <div className="about-content">
+              <p
+                className="desc"
+                dangerouslySetInnerHTML={{
+                  __html: thisPageData?.description,
+                }}
+              ></p>
+            </div>
+          </section>
+        ) : null}
 
-      <BreconMountainRescueComponent />
+        {thisPageData?.contents.length ? (
+          <>
+            {thisPageData?.contents?.map((data, idx) => (
+              <Fragment key={idx}>
+                <section>
+                  <div className="about-content">
+                    <h3>{data?.text}</h3>
+
+                    <p
+                      className="desc"
+                      dangerouslySetInnerHTML={{
+                        __html: data?.content,
+                      }}
+                    ></p>
+                  </div>
+                </section>
+              </Fragment>
+            ))}
+          </>
+        ) : null}
+      </div>
     </div>
   );
 };

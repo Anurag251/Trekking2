@@ -4,6 +4,7 @@ import footerImage from "../assets/images/footerbg.jpg";
 import { useContext } from "react";
 import { AllDataContext } from "../context/AllData.context";
 import Logo from "../assets/images/SACRED HIMALAYA LOGOA-03.svg";
+import HtmlToParagraphs from "./HtmlToParagraphs.component";
 
 const FooterComponent = () => {
   const {
@@ -13,24 +14,32 @@ const FooterComponent = () => {
     aboutDetails,
     contactPopup,
     setContactPopup,
+    socialMedia,
   } = useContext(AllDataContext);
 
   const navigate = useNavigate();
 
   return (
-    <footer style={{ backgroundImage: `url(${footerImage})` }}>
+    <footer>
       <div className="wrapper">
         <div className="footer-list">
           <div className="item">
             <div className="logo">
-              <img src={Logo} alt="logo" />
+              <img
+                src={contactDatas && contactDatas.branding.logo}
+                alt="logo"
+              />
             </div>
 
-            <p
-              className="desc"
-              dangerouslySetInnerHTML={{
-                __html: aboutDetails && aboutDetails[0].description,
-              }}
+            <HtmlToParagraphs
+              data={
+                aboutDetails !== ""
+                  ? aboutDetails !== null && aboutDetails !== undefined
+                    ? aboutDetails[0]?.description
+                    : "No Descriptions"
+                  : ""
+              }
+              length={200}
             />
           </div>
 
@@ -42,10 +51,10 @@ const FooterComponent = () => {
                 <Link to="/">Home</Link>
               </li>
               <li>
-                <Link to="/about">About</Link>
+                <Link to="/destinations">About</Link>
               </li>
               <li>
-                <Link to="/packages">Adventures</Link>
+                <Link to="/destination-details/nepal">Adventures</Link>
               </li>
               <li>
                 <Link to="/blogging">Blog</Link>
@@ -57,7 +66,7 @@ const FooterComponent = () => {
           <div className="item">
             <div className="f-title">Packages</div>
 
-            <ul>
+            <ul className="cate-list">
               {categoriesDatas &&
                 categoriesDatas.map((data, idx) => (
                   <li
@@ -86,12 +95,19 @@ const FooterComponent = () => {
                 {contactDatas && contactDatas.branding.address}
               </li>
               <li>
-                <i className="fas fa-envelope"></i>
-                {contactDatas && contactDatas.branding.phone}
+                <i className="fas fa-phone"></i>
+
+                <a href={`tel:${contactDatas && contactDatas.branding.phone}`}>
+                  {contactDatas && contactDatas.branding.phone}
+                </a>
               </li>
               <li>
-                <i className="fas fa-phone"></i>
-                {contactDatas && contactDatas.branding.email}
+                <i className="fas fa-envelope"></i>
+                <a
+                  href={`mailto:${contactDatas && contactDatas.branding.email}`}
+                >
+                  {contactDatas && contactDatas.branding.email}
+                </a>
               </li>
             </ul>
           </div>
@@ -101,71 +117,13 @@ const FooterComponent = () => {
           <span>© Copyright 2022 Company </span>
 
           <div className="icons">
-            {contactDatas && contactDatas.social_media.fb_url !== null ? (
-              <div className="icon">
-                <a href={contactDatas.social_media.fb_url}>
-                  <i className="fab fa-facebook-f"></i>
+            {socialMedia?.map((data, idx) => (
+              <div className="icon" key={idx}>
+                <a href={data?.url}>
+                  <i className={`fab ${data?.icon.split(" ")[1]}`}></i>
                 </a>
               </div>
-            ) : null}
-
-            {contactDatas && contactDatas.social_media.google_url !== null ? (
-              <div className="icon">
-                <a href={contactDatas.social_media.google_url}>
-                  <i className="fab fa-google"></i>
-                </a>
-              </div>
-            ) : null}
-
-            {contactDatas &&
-            contactDatas.social_media.instagram_url !== null ? (
-              <div className="icon">
-                <a href={contactDatas.social_media.instagram_url}>
-                  <i className="fab fa-instagram"></i>
-                </a>
-              </div>
-            ) : null}
-
-            {contactDatas && contactDatas.social_media.linkedin_url !== null ? (
-              <div className="icon">
-                <a href={contactDatas.social_media.linkedin_url}>
-                  <i className="fab fa-linkedin"></i>
-                </a>
-              </div>
-            ) : null}
-
-            {contactDatas && contactDatas.social_media.fb_url !== null ? (
-              <div className="icon">
-                <a href={contactDatas.social_media.fb_url}>
-                  <i className="fab fa-facebook-f"></i>
-                </a>
-              </div>
-            ) : null}
-
-            {contactDatas &&
-            contactDatas.social_media.pinterest_url !== null ? (
-              <div className="icon">
-                <a href={contactDatas.social_media.pinterest_url}>
-                  <i className="fab fa-pinterest"></i>
-                </a>
-              </div>
-            ) : null}
-
-            {contactDatas && contactDatas.social_media.twitter_url !== null ? (
-              <div className="icon">
-                <a href={contactDatas.social_media.twitter_url}>
-                  <i className="fab fa-twitter"></i>
-                </a>
-              </div>
-            ) : null}
-
-            {contactDatas && contactDatas.social_media.youtube_url !== null ? (
-              <div className="icon">
-                <a href={contactDatas.social_media.youtube_url}>
-                  <i className="fab fa-youtube"></i>
-                </a>
-              </div>
-            ) : null}
+            ))}
           </div>
         </div>
       </div>

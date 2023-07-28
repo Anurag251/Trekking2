@@ -69,7 +69,7 @@ const BloggingPage = () => {
               </div>
             </div> */}
 
-            <div className="blogging-search">
+           {/*  <div className="blogging-search">
               <div className="filter-keyword-sec">
                 <div className="filter-title">Previous Articles</div>
                 <ul className="all-bloggign-links">
@@ -81,7 +81,7 @@ const BloggingPage = () => {
                     ))}
                 </ul>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

@@ -1,4 +1,5 @@
 @use '../layout/_grid' as *
+@use '../helpers/_variables' as *
 
 @mixin bgImage()
   background-position: center
@@ -26,6 +27,7 @@
 
 @mixin trans()
   transition: all .5s cubic-bezier(0.77, 0, 0.175, 1)
+  // transition: all .5s cubic-bezier(0.68, -0.55, 0.265, 1.55)
 
 @mixin fastTrans()
   transition: all .4s cubic-bezier(0, 1, 0, 1)
@@ -59,7 +61,7 @@
     content: ''
     height: 15px
     width: 15px
-    border: 2px solid transparent
+    border: 2px solid $pri
     border-top: 2px solid #ffffff
     border-bottom: 2px solid #ffffff
     border-radius: 50%

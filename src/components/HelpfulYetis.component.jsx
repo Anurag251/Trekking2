@@ -9,15 +9,15 @@ const HelpfulYetisComponent = () => {
       <section>
         <div className="wrapper">
           <div className="title-part">
-            <h5>CHAT WITH ONE OF OUR AWESOME</h5>
+            <h5>Talk on the phone or WhatsApp</h5>
 
-            <div className="name">and helpful yetis on the phone</div>
+            <div className="name">With One of our Amazing and Helpful team</div>
           </div>
 
           <div className="list">
             {teamDatas &&
               teamDatas
-                .filter((dara, idx) => idx < 4)
+                .filter((dara, idx) => idx < 3)
                 .map((data, idx) => (
                   <div className="item" key={idx}>
                     <div className="image-area">
@@ -29,14 +29,19 @@ const HelpfulYetisComponent = () => {
                 ))}
 
             <div className="item">
-              <p>We are open Monday to Thursday 9:30am - 4:30pm</p>
+              <p>We are open 24 hours</p>
 
               <div className="button-group">
-                <button className="callButton">Book A Call Back</button>
-                <h5 className="phoneButton">
-                  <i className="fas fa-phone"></i>
-                  {contactDatas && contactDatas.branding.phone.split(",")[0]}
-                </h5>
+                <a href={`tel:${contactDatas && contactDatas.branding.phone}`}>
+                  <button className="callButton">Book A Call Back</button>
+                </a>
+
+                <a href={`tel:${contactDatas && contactDatas.branding.phone}`}>
+                  <h5 className="phoneButton">
+                    <i className="fas fa-phone"></i>
+                    {contactDatas && contactDatas.branding.phone.split(",")[0]}
+                  </h5>
+                </a>
               </div>
             </div>
           </div>

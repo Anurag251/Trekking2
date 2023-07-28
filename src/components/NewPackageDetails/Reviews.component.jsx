@@ -12,7 +12,9 @@ const ReviewsComponent = () => {
     >
       <section>
         <div className="wrapper">
-          <div className="main-title">Reviews</div>
+          <div className="main-title">
+            Reviews
+          </div>
 
           <div className="main-container">
             <div className="reviews-list">

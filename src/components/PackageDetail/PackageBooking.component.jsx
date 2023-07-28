@@ -3,10 +3,15 @@ import React, { useContext, useEffect, useState } from "react";
 import { AllDataContext } from "../../context/AllData.context";
 import { apis } from "../../utils/apis";
 
-const PackageBookingComponent = ({ selectedData, choosenPrice, setChoosenPrice }) => {
-  const { setMessage } = useContext(AllDataContext);
+const PackageBookingComponent = ({
+  selectedData,
+  choosenPrice,
+  setChoosenPrice,
+  popup,
+}) => {
+  const { setMessage, bookingPopupForm, setBookingPopupForm } =
+    useContext(AllDataContext);
   const [buttonLoading, setButtonLoading] = useState(false);
-  const [formPopup, setformPopup] = useState(false);
   const [formValues, setFormValues] = useState({
     name: "",
     email: "",
@@ -17,7 +22,6 @@ const PackageBookingComponent = ({ selectedData, choosenPrice, setChoosenPrice }
     noOfPerson: "",
     comment: "",
   });
-
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -78,7 +82,12 @@ const PackageBookingComponent = ({ selectedData, choosenPrice, setChoosenPrice }
           setButtonLoading(false);
         });
     } else {
-      alert("All fields are required");
+      setMessage({
+        message: true,
+        title: "Please Try Again",
+        type: "error",
+        desc: `All fields are required unless marked optional `,
+      });
       setButtonLoading(false);
     }
   };
@@ -93,178 +102,219 @@ const PackageBookingComponent = ({ selectedData, choosenPrice, setChoosenPrice }
   const currentYear = currentDate.getFullYear();
 
   return (
-    <div className="start-booking">
-      <div className="title-sec">
-        <div className="form-title">Start Booking</div>
+    <div
+      className={`${
+        popup
+          ? `bookingPopupForm ${
+              bookingPopupForm.isBookingPopupForm ? "active" : ""
+            }`
+          : ""
+      }`}
+    >
+      <div
+        className={`${popup ? `bookingPopupFormBg` : ""}`}
+        onClick={() =>
+          setBookingPopupForm({
+            ...bookingPopupForm,
+            isBookingPopupForm: false,
+            date: "",
+            price: "",
+          })
+        }
+      ></div>
 
-        <div className="price">
-          <span>per person</span> Rs {choosenPrice}/-
+      <div className="start-booking">
+        <div
+          className={`${popup ? `bookingPopupFormClose` : ""}`}
+          onClick={() =>
+            setBookingPopupForm({
+              ...bookingPopupForm,
+              isBookingPopupForm: false,
+              date: "",
+              price: "",
+            })
+          }
+        >
+          <i className="fas fa-times"></i>
         </div>
-      </div>
 
-      <div className="booking-form">
-        <form onSubmit={handleSubmit}>
-          <div className="form-inputs">
-            <div className="input-group">
-              <div className="group">
-                <label htmlFor="inputName">Name</label>
-                <input
-                  className="form-input"
-                  id="inputName"
-                  type="text"
-                  onChange={(e) =>
-                    setFormValues({ ...formValues, name: e.target.value })
-                  }
-                  name="name"
-                  value={formValues.name}
-                  placeholder="Jhon"
-                />
-              </div>
-
-              <div className="group">
-                <label htmlFor="inputPhone">
-                  Phone <span>(optional)</span>
-                </label>
-                <input
-                  className="form-input"
-                  id="inputPhone"
-                  type="number"
-                  onChange={(e) =>
-                    setFormValues({ ...formValues, phone: e.target.value })
-                  }
-                  name="phone"
-                  value={formValues.phone}
-                  placeholder="XXX XXXXXXX"
-                />
-              </div>
-            </div>
-
-            <div className="input-group">
-              <div className="group">
-                <label htmlFor="inputEmail">Email</label>
-                <input
-                  className="form-input"
-                  id="inputEmail"
-                  type="text"
-                  onChange={(e) =>
-                    setFormValues({ ...formValues, email: e.target.value })
-                  }
-                  name="email"
-                  value={formValues.email}
-                  placeholder="something@example.com"
-                />
-              </div>
-
-              <div className="group">
-                <label htmlFor="inputDestination">Destination</label>
-                <input
-                  className="form-input"
-                  id="inputDestination"
-                  type="text"
-                  onChange={(e) =>
-                    setFormValues({
-                      ...formValues,
-                      destination: e.target.value,
-                    })
-                  }
-                  name="destination"
-                  value={formValues.destination}
-                  placeholder="Nepal"
-                />
-              </div>
-            </div>
-
-            <div className="input-group">
-              <div className="group">
-                <label htmlFor="inputDateOfTravel">Date of Travel</label>
-                <input
-                  className="form-input"
-                  id="inputDateOfTravel"
-                  type="text"
-                  onChange={(e) =>
-                    setFormValues({
-                      ...formValues,
-                      dateOfTravel: e.target.value,
-                    })
-                  }
-                  name="dateOfTravel"
-                  value={formValues.dateOfTravel}
-                  placeholder="YYYY-MM-DD"
-                />
-              </div>
-
-              <div className="group">
-                <label htmlFor="inputNoOfDays">No of Days</label>
-                <input
-                  className="form-input"
-                  id="inputNoOfDays"
-                  type="text"
-                  onChange={(e) =>
-                    setFormValues({ ...formValues, noOfDays: e.target.value })
-                  }
-                  name="noOfDays"
-                  value={formValues.noOfDays}
-                  placeholder="1"
-                />
-              </div>
-            </div>
-
-            <div className="input-group">
-              <div className="group">
-                <label htmlFor="inputNoOfPerson">No of Person</label>
-                <input
-                  className="form-input"
-                  id="inputNoOfPerson"
-                  type="text"
-                  onChange={(e) =>
-                    setFormValues({ ...formValues, noOfPerson: e.target.value })
-                  }
-                  name="noOfPerson"
-                  value={formValues.noOfPerson}
-                  placeholder="1"
-                />
-              </div>
-
-              <div className="group">
-                <label htmlFor="inputCommentRemarks">
-                  Comment/Remarks <span>(optional)</span>
-                </label>
-                <textarea
-                  className="form-input"
-                  id="inputCommentRemarks"
-                  cols="50"
-                  rows="3"
-                  onChange={(e) =>
-                    setFormValues({ ...formValues, comment: e.target.value })
-                  }
-                  name="comment"
-                  value={formValues.comment}
-                  placeholder="Write your message"
-                ></textarea>
-              </div>
-            </div>
-
-            <div className="group">
-              <label htmlFor="Message">Package Type</label>
-
-              <select
-                name=""
-                id=""
-                onChange={(e) => setChoosenPrice(e.target.value)}
-              >
-                {selectedData.price.map((price, idx) => (
-                  <option value={price.value} key={idx}>
-                    {price.label} Rs {price.value}/-
-                  </option>
-                ))}
-              </select>
-            </div>
+        <div className="title-sec">
+          <div className="form-title">
+            Start Booking
+            <br />
+            <small>Date: {bookingPopupForm.date}</small>
           </div>
 
-          <button className={`submit-btn ${buttonLoading ? "active" : ""}`}>
-            Book
-          </button>
-        </form>
+          <div className="price">{bookingPopupForm.price}</div>
+        </div>
+
+        <div className="booking-form">
+          <form onSubmit={handleSubmit}>
+            <div className="form-inputs">
+              <div className="input-group">
+                <div className="group">
+                  <label htmlFor="inputName">Name</label>
+                  <input
+                    className="form-input"
+                    id="inputName"
+                    type="text"
+                    onChange={(e) =>
+                      setFormValues({ ...formValues, name: e.target.value })
+                    }
+                    name="name"
+                    value={formValues.name}
+                    placeholder="Jhon"
+                  />
+                </div>
+
+                <div className="group">
+                  <label htmlFor="inputPhone">
+                    Phone <span>(optional)</span>
+                  </label>
+                  <input
+                    className="form-input"
+                    id="inputPhone"
+                    type="number"
+                    onChange={(e) =>
+                      setFormValues({ ...formValues, phone: e.target.value })
+                    }
+                    name="phone"
+                    value={formValues.phone}
+                    placeholder="XXX XXXXXXX"
+                  />
+                </div>
+              </div>
+
+              <div className="input-group">
+                <div className="group">
+                  <label htmlFor="inputEmail">Email</label>
+                  <input
+                    className="form-input"
+                    id="inputEmail"
+                    type="text"
+                    onChange={(e) =>
+                      setFormValues({ ...formValues, email: e.target.value })
+                    }
+                    name="email"
+                    value={formValues.email}
+                    placeholder="something@example.com"
+                  />
+                </div>
+
+                <div className="group">
+                  <label htmlFor="inputDestination">Destination</label>
+                  <input
+                    className="form-input"
+                    id="inputDestination"
+                    type="text"
+                    onChange={(e) =>
+                      setFormValues({
+                        ...formValues,
+                        destination: e.target.value,
+                      })
+                    }
+                    name="destination"
+                    value={formValues.destination}
+                    placeholder="Nepal"
+                  />
+                </div>
+              </div>
+
+              <div className="input-group">
+                <div className="group">
+                  <label htmlFor="inputDateOfTravel">Date of Travel</label>
+                  <input
+                    className="form-input"
+                    id="inputDateOfTravel"
+                    type="text"
+                    onChange={(e) =>
+                      setFormValues({
+                        ...formValues,
+                        dateOfTravel: e.target.value,
+                      })
+                    }
+                    name="dateOfTravel"
+                    value={formValues.dateOfTravel}
+                    placeholder="YYYY-MM-DD"
+                  />
+                </div>
+
+                <div className="group">
+                  <label htmlFor="inputNoOfDays">No of Days</label>
+                  <input
+                    className="form-input"
+                    id="inputNoOfDays"
+                    type="text"
+                    onChange={(e) =>
+                      setFormValues({ ...formValues, noOfDays: e.target.value })
+                    }
+                    name="noOfDays"
+                    value={formValues.noOfDays}
+                    placeholder="1"
+                  />
+                </div>
+              </div>
+
+              <div className="input-group">
+                <div className="group">
+                  <label htmlFor="inputNoOfPerson">No of Person</label>
+                  <input
+                    className="form-input"
+                    id="inputNoOfPerson"
+                    type="text"
+                    onChange={(e) =>
+                      setFormValues({
+                        ...formValues,
+                        noOfPerson: e.target.value,
+                      })
+                    }
+                    name="noOfPerson"
+                    value={formValues.noOfPerson}
+                    placeholder="1"
+                  />
+                </div>
+
+                <div className="group">
+                  <label htmlFor="inputCommentRemarks">
+                    Comment/Remarks <span>(optional)</span>
+                  </label>
+                  <textarea
+                    className="form-input"
+                    id="inputCommentRemarks"
+                    cols="50"
+                    rows="3"
+                    onChange={(e) =>
+                      setFormValues({ ...formValues, comment: e.target.value })
+                    }
+                    name="comment"
+                    value={formValues.comment}
+                    placeholder="Write your message"
+                  ></textarea>
+                </div>
+              </div>
+
+              {/*  <div className="group">
+                <label htmlFor="Message">Package Type</label>
+
+                <select
+                  name=""
+                  id=""
+                  onChange={(e) => setChoosenPrice(e.target.value)}
+                >
+                  {selectedData.price.map((price, idx) => (
+                    <option value={price.value} key={idx}>
+                      {price.label} Rs {price.value}/-
+                    </option>
+                  ))}
+                </select>
+              </div> */}
+            </div>
+
+            <button className={`submit-btn ${buttonLoading ? "active" : ""}`}>
+              Book
+            </button>
+          </form>
+        </div>
       </div>
     </div>
   );

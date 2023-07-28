@@ -15,14 +15,6 @@ const DestinationDetailsPage = () => {
 
   const location = useLocation();
 
-  useEffect(() => {
-    if (tripDatas !== null) {
-      console.log(tripDatas);
-
-      console.log(location.pathname.split("/")[2]);
-    }
-  }, [tripDatas]);
-
   return (
     <div className="ToursInNepalPage">
       <PageBannerComponent
@@ -36,7 +28,7 @@ const DestinationDetailsPage = () => {
             : null
         }
       >
-      Trekking Package in {location.pathname.split("/")[2]}
+        Trekking Package in {location.pathname.split("/")[2]}
       </PageBannerComponent>
 
       <div className="AdVentuRes">

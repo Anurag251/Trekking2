@@ -12,7 +12,10 @@ const TripExtensionsComponent = () => {
     >
       <section>
         <div className="wrapper">
-          <div className="main-title">tRip exteNsions</div>
+          <div className="main-title">
+            tRip exteNsions
+            <i className="fas fa-angle-down"></i>
+          </div>
 
           <div className="main-container">
             <div className="trip-extensions-list">

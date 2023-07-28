@@ -39,6 +39,33 @@ header
         @include image()
         object-fit: contain
 
+    .header-other
+      @include flex($justify: flex-end)
+      gap: .5rem
+
+    .trustpilot-widget
+      height: 3rem
+      width: 13rem
+      @include flex($justify: center)
+      overflow: hidden
+
+      iframe
+        height: 100%
+        width: 100%
+        overflow: hidden
+        display: none
+
+        html
+          overflow: hidden
+
+        body
+          @include flex($justify: center)
+          overflow: hidden !important
+
+          img
+            @include image()
+            object-fit: contain !important
+
     .phoneNumber
       height: 100%
       text-align: right
@@ -54,8 +81,8 @@ header
         @include flex($justify: flex-end)
         margin-right: 0 !important
         padding-right: 0
-        color: $pri
         font-weight: 600
+        color: $pri
 
         .icon
           height: 1.4rem
@@ -95,7 +122,7 @@ header
 
         .drop-down
           position: absolute
-          top: 3.5rem
+          top: 3.4rem
           left: 100%
           transform: translateX(-50%)
           width: 14.5rem
@@ -166,49 +193,52 @@ header
         &.active
           border-radius: 4px
 
-    .side-nav-btn
-      height: 20px
-      width: 30px
-      @include flex($justify: center)
-      position: relative
-      cursor: pointer
-      display: none
+  .side-nav-btn
+    height: 20px
+    width: 30px
+    @include flex($justify: center)
+    position: relative
+    cursor: pointer
+    display: none
+    background-color: $pri
+    box-shadow: 0 0 0 .5rem $pri
+    border-radius: .1rem
 
-      &.active
-        &::before
-          width: 50%
-
-        &::after
-          width: 50%
-
+    &.active
       &::before
-        content: ''
-        position: absolute
-        top: 0
-        right: 0
-        width: 100%
-        height: 2.5px
-        background-color: $light
-        border-radius: 10px
-        @include trans()
-
-      .das
-        height: 2.5px
-        background-color: $light
-        border-radius: 10px
-        width: 100%
-        @include trans()
+        width: 50%
 
       &::after
-        content: ''
-        position: absolute
-        bottom: 0
-        left: 0
-        width: 100%
-        height: 2.5px
-        background-color: $light
-        border-radius: 10px
-        @include trans()
+        width: 50%
+
+    &::before
+      content: ''
+      position: absolute
+      top: 0
+      right: 0
+      width: 100%
+      height: 2.5px
+      background-color: $light
+      border-radius: 10px
+      @include trans()
+
+    .das
+      height: 2.5px
+      background-color: $light
+      border-radius: 10px
+      width: 100%
+      @include trans()
+
+    &::after
+      content: ''
+      position: absolute
+      bottom: 0
+      left: 0
+      width: 100%
+      height: 2.5px
+      background-color: $light
+      border-radius: 10px
+      @include trans()
 
 /***********      side-nav      ***********/
 .side-nav
@@ -271,6 +301,34 @@ header
 
       &.active
         background-color: rgba($light,.2)
+
+    .drop-menu
+      &:hover
+        .drop-down-area
+          grid-template-rows: 1fr
+
+      .drop-down-area
+        display: grid
+        grid-template-rows: 0fr
+        @include trans()
+
+        .drop-down
+          overflow: hidden
+          background-color: rgba($light, .2)
+          border-radius: 6px
+
+          li
+            border-bottom: 1px solid rgba($light, .5)
+
+            &:nth-last-child(1)
+              border-bottom: none
+
+            button
+              padding: 1rem
+              width: 100%
+              color: $light
+              cursor: pointer
+              text-align: left
 
 .big-drop-down
   position: fixed

@@ -1,6 +1,9 @@
-import React from "react";
+import { useContext } from "react";
+import { AllDataContext } from "../context/AllData.context";
 
 const WhyChooseUsComponent = () => {
+  const { aboutSacred } = useContext(AllDataContext);
+
   return (
     <div className="why-choose-us">
       <section>
@@ -12,49 +15,15 @@ const WhyChooseUsComponent = () => {
           </div>
 
           <div className="list">
-            <div className="item">
-              <i className="fa-solid fa-hand-holding-dollar"></i>
+            {aboutSacred?.map((data, idx) => (
+              <div className="item" key={idx}>
+                <img src={data?.image} alt="" />
 
-              <div className="name">ULTIMATE TRIP FLEXIBILITY</div>
+                <div className="name">{data?.title}</div>
 
-              <div className="name">
-                HASSLE-FREE. MOVE YOUR DATES, CHANGE YOUR TREK OR YOUR PAYMENTS
-                ANYTIME.
+                <p className="desc">{data?.description}</p>
               </div>
-            </div>
-
-            <div className="item">
-              <i className="fa-solid fa-shoe-prints"></i>
-
-              <div className="name">ULTIMATE TRIP FLEXIBILITY</div>
-
-              <div className="name">
-                HASSLE-FREE. MOVE YOUR DATES, CHANGE YOUR TREK OR YOUR PAYMENTS
-                ANYTIME.
-              </div>
-            </div>
-
-            <div className="item">
-              <i className="fa-solid fa-calendar-days"></i>
-
-              <div className="name">ULTIMATE TRIP FLEXIBILITY</div>
-
-              <div className="name">
-                HASSLE-FREE. MOVE YOUR DATES, CHANGE YOUR TREK OR YOUR PAYMENTS
-                ANYTIME.
-              </div>
-            </div>
-
-            <div className="item">
-              <i className="fa-solid fa-compass"></i>
-
-              <div className="name">ULTIMATE TRIP FLEXIBILITY</div>
-
-              <div className="name">
-                HASSLE-FREE. MOVE YOUR DATES, CHANGE YOUR TREK OR YOUR PAYMENTS
-                ANYTIME.
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </section>

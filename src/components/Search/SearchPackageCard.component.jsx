@@ -9,7 +9,7 @@ const SearchPackageCardComponent = ({ data }) => {
     <Link to={`/package-details/${data.id}`}>
       <div className="SearchPackageCardComponent">
         <div className="image-area">
-          <img src={data.image.original_image} alt="" />
+          <img src={data.image?.original_image} alt={`${data.title} image`} />
 
           {/* <div className="available">Available dates in:</div>
 

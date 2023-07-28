@@ -1,9 +1,9 @@
 /* eslint-disable react/prop-types */
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { AllDataContext } from "../../context/AllData.context";
 
 const TripOverviewComponent = ({ data }) => {
-  const { detailsPageNav } = useContext(AllDataContext);
+  const { detailsPageNav, setDetailsPageNav } = useContext(AllDataContext);
 
   return (
     <div
@@ -13,10 +13,24 @@ const TripOverviewComponent = ({ data }) => {
     >
       <section>
         <div className="wrapper">
-          <div className="main-title">trip overview</div>
+          <div
+            className={`inner-details-button ${
+              detailsPageNav === "TripOverview" ? "show-details" : ""
+            }`}
+          >
+            <div
+              className="main-title"
+              onClick={() => {
+                window.scroll(0, 370);
+                setDetailsPageNav("TripOverview");
+              }}
+            >
+              trip overview <i className="fas fa-angle-down"></i>
+            </div>
 
-          <div className="main-container">
-            {/*  <div className="TripOverview-card-list">
+            <div className="inner-details">
+              <div className="main-container">
+                {/*  <div className="TripOverview-card-list">
               <div className="TripOverview-card">
                 <div className="image">
                   <img
@@ -53,16 +67,16 @@ const TripOverviewComponent = ({ data }) => {
               </div>
             </div> */}
 
-            <div className="TripOverviewMainContent">
-              <p
-                className="desc"
-                dangerouslySetInnerHTML={{
-                  __html: data.content,
-                }}
-              />
-            </div>
+                <div className="TripOverviewMainContent">
+                  <p
+                    className="desc"
+                    dangerouslySetInnerHTML={{
+                      __html: data.content,
+                    }}
+                  />
+                </div>
 
-            <div className="included-and-not-included">
+                {/*  <div className="included-and-not-included">
               <div className="what-included">
                 <div className="name">WHAT'S INCLUDED?</div>
 
@@ -218,6 +232,8 @@ const TripOverviewComponent = ({ data }) => {
                     (only 15 kg included)
                   </li>
                 </ul>
+              </div>
+            </div> */}
               </div>
             </div>
           </div>

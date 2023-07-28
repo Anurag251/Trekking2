@@ -4,6 +4,7 @@ import { useContext } from "react";
 import { AllDataContext } from "../context/AllData.context";
 import Logo from "../assets/images/SACRED HIMALAYA LOGOA-03.svg";
 import telephoneImage from "../assets/images/telephone.png";
+import TrustpilotWidgetComponent from "./TrustpilotWidget.component";
 
 const HeaderComponent = () => {
   const {
@@ -12,6 +13,7 @@ const HeaderComponent = () => {
     sideNavHidden,
     contactPopup,
     setContactPopup,
+    contactDatas,
   } = useContext(AllDataContext);
   const [selectedCat, setSelectedCat] = useState(null);
   const [selectedCatId, setSelectedCatId] = useState(null);
@@ -35,18 +37,33 @@ const HeaderComponent = () => {
           <div className="header-top">
             <Link to="/">
               <div className="logo">
-                <img src={Logo} alt="logo" />
+                <img
+                  src={contactDatas && contactDatas.branding.logo}
+                  alt="logo"
+                />
               </div>
             </Link>
 
-            <div className="phoneNumber">
-              <a href="#" className={`nav-btn`}>
-                <div className="icon">
-                  <img src={telephoneImage} alt="" />
-                </div>
-                02920 003216
-              </a>
-              <p>Direct Call or WhatsApp 24/7</p>
+            <div className="header-other">
+              <div className="phoneNumber">
+                <a
+                  href={`tel:${contactDatas && contactDatas.branding.phone}`}
+                  className={`nav-btn`}
+                >
+                  <div className="icon">
+                    <img src={telephoneImage} alt="" />
+                  </div>
+                  {contactDatas && contactDatas.branding.phone}
+                </a>
+                <p>Direct Call or WhatsApp 24/7</p>
+              </div>
+
+              <div
+                className={`side-nav-btn ${sideNavHidden ? "active" : ""}`}
+                onClick={() => setSideNavHidden(!sideNavHidden)}
+              >
+                <div className="das"></div>
+              </div>
             </div>
           </div>
 
@@ -110,7 +127,9 @@ const HeaderComponent = () => {
                 <Link to="/destination-details/nepal">
                   <button
                     className={`nav-btn ${
-                      location.pathname === "/destination-details/nepal" ? "active" : ""
+                      location.pathname === "/destination-details/nepal"
+                        ? "active"
+                        : ""
                     }`}
                   >
                     Nepal Trek
@@ -122,7 +141,9 @@ const HeaderComponent = () => {
                 <Link to="/destination-details/bhutan">
                   <button
                     className={`nav-btn ${
-                      location.pathname === "/destination-details/bhutan" ? "active" : ""
+                      location.pathname === "/destination-details/bhutan"
+                        ? "active"
+                        : ""
                     }`}
                   >
                     Bhutan Trek
@@ -143,7 +164,7 @@ const HeaderComponent = () => {
               </li>
 
               <li>
-                <Link to="/tours-in-nepal">
+                <Link to="http://www.nepalmarathons.com/" target="blank">
                   <button
                     className={`nav-btn ${
                       location.pathname === "/tours-in-nepal" ? "active" : ""
@@ -155,10 +176,12 @@ const HeaderComponent = () => {
               </li>
 
               <li>
-                <Link to="/">
+                <Link to="/lama-land-homestay">
                   <button
                     className={`nav-btn ${
-                      location.pathname === "/noooo" ? "active" : ""
+                      location.pathname === "/lama-land-homestay"
+                        ? "active"
+                        : ""
                     }`}
                   >
                     Lama Land Homestay
@@ -166,7 +189,7 @@ const HeaderComponent = () => {
                 </Link>
               </li>
 
-             {/*  <li>
+              {/*  <li>
                 <button
                   className="nav-btn"
                   onClick={() => setDestinationsSelected(!destinationsSelected)}
@@ -257,12 +280,6 @@ const HeaderComponent = () => {
               </a>
             </li> */}
             </ul>
-            <div
-              className={`side-nav-btn ${sideNavHidden ? "active" : ""}`}
-              onClick={() => setSideNavHidden(!sideNavHidden)}
-            >
-              <div className="das"></div>
-            </div>
           </div>
         </div>
       </header>

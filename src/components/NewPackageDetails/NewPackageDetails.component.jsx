@@ -13,19 +13,19 @@ import GalleryComponent from "./Gallery.component";
 import { AllDataContext } from "../../context/AllData.context";
 import { useLocation } from "react-router-dom";
 import LoadingComponent from "../Loading.component";
+import PackageBookingComponent from "../PackageDetail/PackageBooking.component";
 
 const NewPackageDetailsComponent = () => {
   const { tripDatas } = useContext(AllDataContext);
+  const [choosenPrice, setChoosenPrice] = useState(null);
 
   const [selectedData, setSelectedData] = useState(null);
-
-  console.log(selectedData);
 
   const location = useLocation();
 
   useEffect(() => {
     if (tripDatas !== null) {
-      tripDatas.forEach((data) => {
+      tripDatas?.forEach((data) => {
         if (location.pathname.split("/")[2] == data.id) {
           setSelectedData(data);
         }
@@ -37,9 +37,16 @@ const NewPackageDetailsComponent = () => {
     <Fragment>
       {selectedData !== null ? (
         <div className="NewPackageDetails">
-          <PackageBannerComponent image={selectedData.image.original_image}>
+          <PackageBannerComponent image={selectedData.image?.original_image}>
             {selectedData.title.toLowerCase()}
           </PackageBannerComponent>
+
+          <PackageBookingComponent
+            selectedData={selectedData}
+            choosenPrice={choosenPrice}
+            setChoosenPrice={setChoosenPrice}
+            popup={true}
+          />
 
           <PackageMainDetailsComponent data={selectedData} />
 

@@ -388,22 +388,21 @@
       font-size: 14px
       line-height: 1.4rem
       text-align: justify
-      color: rgba($dark, .7)
+      color: $dark
       margin-bottom: 1rem
 
     .card-footer
-      @include flex($justify: space-between)
-
       .package-price
-        @include flex($justify: space-between)
+        @include flex($justify: flex-start)
+        gap: .3rem
         width: 100%
-        border-top: 1px solid #000
+        border-top: 1px solid $dark
         padding-top: 1rem
 
         .prices
-          color: $sec
-          font-size: 1.3rem
-          font-weight: 600
+          color: $dark
+          font-size: 1.1rem
+          font-weight: 700
 
       .or
         color: rgba($dark, .3)

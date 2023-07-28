@@ -2,8 +2,12 @@ import { Link } from "react-router-dom";
 import nepalImage from "../assets/images/nepal.webp";
 import bhutanImage from "../assets/images/bhutan.jpeg";
 import tibetImage from "../assets/images/tibet.jpeg";
+import { useContext } from "react";
+import { AllDataContext } from "../context/AllData.context";
 
 const TrekkingRegionsWorldwideComponent = () => {
+  const { countryDatas } = useContext(AllDataContext);
+
   return (
     <div className="TrekkingRegionsWorldwide">
       <section>
@@ -15,35 +19,20 @@ const TrekkingRegionsWorldwideComponent = () => {
           </div>
 
           <div className="list">
-            <Link to="/destination-details/nepal">
-              <div className="item">
-                <div className="image-area">
-                  <img src={nepalImage} alt="" />
+            {countryDatas?.map((data, idx) => (
+              <Link
+                to={`/destination-details/${data?.country_name.toLowerCase()}`}
+                key={idx}
+              >
+                <div className="item">
+                  <div className="image-area">
+                    <img src={data?.icon} alt="" />
+                  </div>
+
+                  <div className="name">{data?.country_name}</div>
                 </div>
-
-                <div className="name">Nepal</div>
-              </div>
-            </Link>
-
-            <Link to="/destination-details/bhutan">
-              <div className="item">
-                <div className="image-area">
-                  <img src={bhutanImage} alt="" />
-                </div>
-
-                <div className="name">Bhutan</div>
-              </div>
-            </Link>
-
-            <Link to="/destination-details/tibet">
-              <div className="item">
-                <div className="image-area">
-                  <img src={tibetImage} alt="" />
-                </div>
-
-                <div className="name">Tibet</div>
-              </div>
-            </Link>
+              </Link>
+            ))}
           </div>
         </div>
       </section>

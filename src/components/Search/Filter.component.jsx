@@ -13,6 +13,7 @@ const FilterComponent = ({ setCountPackage }) => {
     selectedCate,
     setSelectedCate,
     setSearchData,
+    setShowFilter,
   } = useContext(AllDataContext);
   const [buttonLoading, setButtonLoading] = useState(false);
 
@@ -60,7 +61,9 @@ const FilterComponent = ({ setCountPackage }) => {
                   },
                 });
                 setCountPackage(res.data.data.length);
+                setShowFilter(false);
               } else {
+                setShowFilter(false);
                 setMessage({
                   message: true,
                   title: "No Package",
@@ -92,6 +95,12 @@ const FilterComponent = ({ setCountPackage }) => {
 
   return (
     <div className="FilterSection">
+      <div
+        className="filter-section-close"
+        onClick={() => setShowFilter(false)}
+      >
+        <i className="fas fa-times"></i>
+      </div>
       <form onSubmit={filterData} className="form">
         <div className="filter-keyword-sec">
           <div className="filter-title">Set your destination</div>
@@ -181,7 +190,8 @@ const FilterComponent = ({ setCountPackage }) => {
                     setSearchData(null);
                     setSelectedCate(cate.id);
                     setCountPackage(cate.trips.length);
-                    window.scroll(0,70)
+                    window.scroll(0, 70);
+                    setShowFilter(false);
                   }}
                 />
                 <label htmlFor={cate.id}>

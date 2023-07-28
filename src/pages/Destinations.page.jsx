@@ -1,9 +1,12 @@
-import HaveChatComponent from "../components/HaveChat.component";
+import { Link } from "react-router-dom";
 import PageBannerComponent from "../components/PageBanner.component";
 import TrekkingRegionsWorldwideComponent from "../components/TrekkingRegionsWorldwide.component";
-import WhyChooseUsComponent from "../components/WhyChooseUs.component";
+import { useContext } from "react";
+import { AllDataContext } from "../context/AllData.context";
 
 const DestinationsPage = () => {
+  const { aboutDetails } = useContext(AllDataContext);
+
   return (
     <div className="Destinations">
       <PageBannerComponent
@@ -16,35 +19,35 @@ const DestinationsPage = () => {
       <section>
         <div className="wrapper">
           <div className="about-destinations">
-            <h4>
-              As the UK’s No.1 High Altitude trekking specialist, if you love
-              the mountains, want to climb higher, trek further and tick Everest
-              Base Camp, Kili or Machu Picchu off your bucket list, come and
-              join us.
-            </h4>
-
-            <p>
-              We hand pick the best destinations and trips for beginners, expert
-              climbers and everything in between - check out all our
-              destinations below
-            </p>
-
-            <button>Why Choose Sacred</button>
+            <p
+              className="desc"
+              dangerouslySetInnerHTML={{
+                __html:
+                  aboutDetails !== null ? aboutDetails[1]?.description : "",
+              }}
+            />
+            <Link to="/reasons-to-choose-us">
+              <button>Why Choose Sacred</button>
+            </Link>
           </div>
         </div>
       </section>
 
       <TrekkingRegionsWorldwideComponent />
 
-      <div className="wrapper">
-        <div className="package-footer">
-          <h2>
-            Secure your <span>lifetime deposit</span> today
-          </h2>
+      <section>
+        <div className="wrapper">
+          <div className="package-footer">
+            <h2>
+              Secure your <span>lifetime deposit</span> today
+            </h2>
 
-          <p>Book onto a TREK. Once you pay your deposit, it NEVER expires!</p>
+            <p>
+              Book onto a TREK. Once you pay your deposit, it NEVER expires!
+            </p>
+          </div>
         </div>
-      </div>
+      </section>
     </div>
   );
 };

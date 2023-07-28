@@ -1,14 +1,11 @@
 /* eslint-disable react/no-unescaped-entities */
 import PageBannerComponent from "../components/PageBanner.component";
-import { Link, useLocation } from "react-router-dom";
-import BloggingCardComponent from "../components/Blogging/BloggingCard.component";
-import BloggingBigCardComponsnt from "../components/Blogging/BloggingBigCard.componsnt";
-import NewPackageCardComponent from "../components/NewPackageCard.component";
+import { useLocation } from "react-router-dom";
 import { AllDataContext } from "../context/AllData.context";
 import { useContext, useEffect, useState } from "react";
 
 const BloggingDetailsPage = () => {
-  const { blogDatas } = useContext(AllDataContext);
+  const { blogDatas, bookDatas } = useContext(AllDataContext);
 
   const [selectedData, setSelectedData] = useState(null);
 
@@ -28,22 +25,44 @@ const BloggingDetailsPage = () => {
     <div className="BloggingPage BloggingDetailsPage">
       <PageBannerComponent
         image={`${selectedData && selectedData.image.original_image}`}
-      ></PageBannerComponent>
+      >
+        {selectedData && selectedData.title}
+      </PageBannerComponent>
 
       <div className="wrapper">
         <div className="blogging-area">
           <div className="blogging-cards-area">
-            <h1>{selectedData && selectedData.title}</h1>
-
             <p
               className="desc"
               dangerouslySetInnerHTML={{
                 __html: selectedData && selectedData.content,
               }}
             />
+
+            {selectedData?.contents?.map((data, idx) => (
+              <div className="with-image" key={idx}>
+                <div className="image">
+                  <img
+                    src={data["text-image-text"]?.image?.original_image}
+                    alt={data["text-image-text"]?.text}
+                  />
+                </div>
+
+                <div className="about-content">
+                  <h3>{data["text-image-text"]?.text}</h3>
+
+                  <p
+                    className="desc"
+                    dangerouslySetInnerHTML={{
+                      __html: data["text-image-text"]?.content,
+                    }}
+                  ></p>
+                </div>
+              </div>
+            ))}
           </div>
           <div className="blogging-search-area">
-            <div className="blogging-search">
+            {/* <div className="blogging-search">
               <div className="filter-keyword-sec">
                 <div className="filter-title">Previous Articles</div>
                 <ul className="all-bloggign-links">
@@ -55,7 +74,7 @@ const BloggingDetailsPage = () => {
                     ))}
                 </ul>
               </div>
-            </div>
+            </div> */}
 
             {/*  <div className="blogging-search">
               <div className="filter-keyword-sec">
@@ -91,7 +110,20 @@ const BloggingDetailsPage = () => {
         </div>
 
         <section>
-          <div className="others-package-list"></div>
+          <div className="title">
+            Sacred Himalaya is recommended by the Himalayantravel guide series
+            of books
+          </div>
+
+          <div className="book-list">
+            {bookDatas?.map((data, idx) => (
+              <div className="book-card" key={idx}>
+                <img src={data?.image} alt={data?.title} />
+
+                <h4 className="name">{data?.title}</h4>
+              </div>
+            ))}
+          </div>
         </section>
       </div>
     </div>

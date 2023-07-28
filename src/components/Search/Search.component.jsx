@@ -12,6 +12,8 @@ const SearchComponent = () => {
     setSelectedDatas,
     countPackage,
     setCountPackage,
+    showFilter,
+    setShowFilter,
   } = useContext(AllDataContext);
 
   const location = useLocation();
@@ -30,7 +32,15 @@ const SearchComponent = () => {
       <section>
         <div className="wrapper">
           <div className="search-result-area">
-            <FilterComponent setCountPackage={setCountPackage} />
+            <div
+              className={`filter-section-area ${showFilter ? "showFilter" : ""}`}
+            >
+              <div
+                className="filter-section-bg"
+                onClick={() => setShowFilter(false)}
+              ></div>
+              <FilterComponent setCountPackage={setCountPackage} />
+            </div>
 
             {tripDatas && (
               <SearchResultListComponent

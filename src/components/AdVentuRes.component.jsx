@@ -10,9 +10,9 @@ const AdVentuResComponent = () => {
       <section>
         <div className="wrapper">
           <div className="title-part">
-            <h5>TOP Sacred</h5>
+            <h5>Sacred Himalaya Top Trekking</h5>
 
-            <div className="name">adVentuRes</div>
+            <div className="name">Adventures</div>
           </div>
 
           <div className="list">
@@ -22,16 +22,6 @@ const AdVentuResComponent = () => {
                 .map((data, idx) => (
                   <NewPackageCardComponent key={idx} data={data} />
                 ))}
-          </div>
-
-          <div className="package-footer">
-            <h2>
-              Secure your <span>lifetime deposit</span> today
-            </h2>
-
-            <p>
-              Book onto a TREK. Once you pay your deposit, it NEVER expires!
-            </p>
           </div>
         </div>
       </section>

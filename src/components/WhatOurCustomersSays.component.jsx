@@ -1,5 +1,3 @@
-import React from "react";
-
 const WhatOurCustomersSaysComponent = () => {
   return (
     <div className="WhatOurCustomersSays">

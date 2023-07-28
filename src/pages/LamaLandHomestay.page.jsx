@@ -3,14 +3,14 @@ import PageBannerComponent from "../components/PageBanner.component";
 import AboutPageGalleryComponent from "../components/AboutPageGallery.component";
 import { AllDataContext } from "../context/AllData.context";
 
-const ReasonsToChooseUsPage = () => {
+const LamaLandHomestayPage = () => {
   const { aboutSacred, aboutDetails } = useContext(AllDataContext);
 
   const [thisPageData, setThisPageData] = useState(null);
 
   useEffect(() => {
     aboutDetails?.forEach((data) => {
-      if (data.slug === "reasons-to-choose-sacred") {
+      if (data.slug === "lama-land-homestay") {
         setThisPageData(data);
       }
     });
@@ -78,4 +78,4 @@ const ReasonsToChooseUsPage = () => {
   );
 };
 
-export default ReasonsToChooseUsPage;
+export default LamaLandHomestayPage;

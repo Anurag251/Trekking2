@@ -1,76 +1,61 @@
-import React from "react";
+import { Fragment, useContext, useEffect, useState } from "react";
 import PageBannerComponent from "../components/PageBanner.component";
+import { AllDataContext } from "../context/AllData.context";
 
 const AwesomenessGuaranteePage = () => {
+  const { aboutDetails } = useContext(AllDataContext);
+
+  const [thisPageData, setThisPageData] = useState(null);
+
+  useEffect(() => {
+    aboutDetails?.forEach((data) => {
+      if (data.slug === "awesomeness-guarantee") {
+        setThisPageData(data);
+      }
+    });
+  }, [aboutDetails]);
+
   return (
-    <div className="AwesomenessGuaranteePage">
-      <PageBannerComponent image="https://i.assetzen.net/i/p3yqA9G4rDFB/w:1405/h:475/q:70.webp">
-        awesomeness guarantee
+    <div className="ReasonsToChooseUs">
+      <PageBannerComponent image={thisPageData?.image?.original_image}>
+        {thisPageData?.title}
       </PageBannerComponent>
 
-      <section>
-        <div className="wrapper">
-          <div className="awesomeness-guarantee-list">
-            <div className="awesomeness-guarantee-item">
-              <div className="guarantee-title">
-                When you book and become an sacred, you are covered by our
-                'awesomeness guarantee'
-              </div>
-              
-              <div className="guarantee-image">
-                <img
-                  src="https://i.assetzen.net/i/hLmWurOFZzhG/w:400/h:400/q:70.webp"
-                  alt=""
-                />
-              </div>
-
-              <p>
-                We are not ones to hide behind complicated rules or the old T &
-                C’s. That's why we came up with our Awesomeness Guarantee. This
-                is something that's created and based on trust, transparency and
-                a little bit of common sense added into the mix.
-              </p>
+      <div className="wrapper">
+        {thisPageData?.description !== null ? (
+          <section>
+            <div className="about-content">
+              <p
+                className="desc"
+                dangerouslySetInnerHTML={{
+                  __html: thisPageData?.description,
+                }}
+              ></p>
             </div>
+          </section>
+        ) : null}
 
-            <div className="awesomeness-guarantee-item">
-              <div className="guarantee-title">Here's how it works</div>
+        {thisPageData?.contents.length ? (
+          <>
+            {thisPageData?.contents?.map((data, idx) => (
+              <Fragment key={idx}>
+                <section>
+                  <div className="about-content">
+                    <h3>{data?.text}</h3>
 
-              <p>
-                If you feel that you were let down by our experience and that
-                your trip was not awesome then contact us. We will then gather
-                all of the details from you, talk to our staff on the ground to
-                locate and validate any problems and completely understand why
-                things went wrong.
-              </p>
-
-              <p>
-                If we find that something was completely wrong and wasn’t as
-                described and we establish the fault or problem was within our
-                control or our staff on the ground then we’ll work out a refund
-                that’s proportional to the scale of the issue.{" "}
-              </p>
-
-              <p>
-                As ever, and in line with the way in which we work, fairness and
-                transparency is needed from both sides including you. We just
-                ask that if you do spot anything that isn’t quite right, you
-                mention this to the staff on the ground, give them the chance to
-                rectify the situation whilst you’re on the trip. Without having
-                done that, it’s way more difficult to put things right. This
-                would be taking into account when looking at the case.
-              </p>
-
-              <p>
-                We want all of your adventures with us to be 'AWESOME' which is
-                why we are proud to cover your bookings with the 'Awesomeness
-                Guarantee'. If on the hugely outside chance that you want to
-                claim then email info@evertrek.co.uk and we will open an
-                investigation into why your trip wasn't awesome.{" "}
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
+                    <p
+                      className="desc"
+                      dangerouslySetInnerHTML={{
+                        __html: data?.content,
+                      }}
+                    ></p>
+                  </div>
+                </section>
+              </Fragment>
+            ))}
+          </>
+        ) : null}
+      </div>
     </div>
   );
 };

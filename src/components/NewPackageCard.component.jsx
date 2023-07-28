@@ -8,17 +8,8 @@ const NewPackageCardComponent = ({ data }) => {
   return (
     <Link to={`/package-details/${data.id}`}>
       <div className="packageCardComponent">
-        <div className="image-area">
-          <img src={data.image.original_image} alt="" />
-
-          {/*   <div className="available">Available dates in:</div>
-
-          <div className="month-list">
-            <span>MAR</span>
-            <span>APR</span>
-            <span>MAY</span>
-            <span>OCT</span>
-          </div> */}
+        <div className="image-area" style={{ backgroundImage: `url()` }}>
+          <img src={data.image?.original_image} alt={`${data.title} image`} />
         </div>
 
         <div className="content">
@@ -57,7 +48,7 @@ const NewPackageCardComponent = ({ data }) => {
 
           <div className="card-footer">
             <div className="package-price">
-              {data.price[0].label && data.price[0].label} Package
+              Trip Cost From
               <div className="prices">
                 {data.price[0].value && data.price[0].value}
               </div>

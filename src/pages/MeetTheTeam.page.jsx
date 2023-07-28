@@ -1,7 +1,11 @@
+import { useContext } from "react";
 import PageBannerComponent from "../components/PageBanner.component";
 import TeamCardComponent from "../components/TeamCard.component";
+import { AllDataContext } from "../context/AllData.context";
 
 const MeetTheTeamPage = () => {
+  const { teamDatas } = useContext(AllDataContext);
+
   return (
     <div className="MeetTheTeamPage">
       <PageBannerComponent
@@ -19,28 +23,9 @@ const MeetTheTeamPage = () => {
             </div>
 
             <div className="all-teams-list">
-              <TeamCardComponent data="https://i.assetzen.net/i/OUaS828fDnDA/w:500/h:500/q:70.webp" />
-              <TeamCardComponent data="https://i.assetzen.net/i/QQv7PqXMevQp/w:500/h:500/q:70.webp" />
-              <TeamCardComponent data="https://i.assetzen.net/i/lLiQZKG7N8Jz/w:500/h:500/q:70.webp" />
-              <TeamCardComponent data="https://i.assetzen.net/i/6SWrvLJC5nDZ/w:500/h:500/q:70.webp" />
-              <TeamCardComponent data="https://i.assetzen.net/i/LP4cCd6FNMW7/w:500/h:500/q:100.webp" />
-              <TeamCardComponent data="https://i.assetzen.net/i/JYWnOJPUNQYw/w:500/h:500/q:70.webp" />
-              <TeamCardComponent data="https://i.assetzen.net/i/HEQ2F1Secobt/w:500/h:500/q:100.webp" />
-              <TeamCardComponent data="https://i.assetzen.net/i/QO8vIwYq1vMQ/w:500/h:500/q:70.webp" />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section>
-        <div className="wrapper">
-          <div className="teams-area">
-            <div className="title-part">
-              <div className="name">our team in Nepal</div>
-            </div>
-
-            <div className="all-teams-list">
-              <TeamCardComponent data="https://i.assetzen.net/i/UjsjutoJXkZl/w:500/h:500/q:70.webp" />
+              {teamDatas?.map((data, idx) => (
+                <TeamCardComponent data={data} key={idx} />
+              ))}
             </div>
           </div>
         </div>

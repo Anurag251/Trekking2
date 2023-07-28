@@ -3,17 +3,14 @@ import "./assets/styles/main.sass";
 import { Route, Routes, useLocation } from "react-router-dom";
 import HomePage from "./pages/Home.Page";
 import FooterComponent from "./components/Footer.component";
-import { PackageDetails } from "./pages/PackageDetails.page";
 import { Fragment, useContext, useEffect, useState } from "react";
 import { ContactComponent } from "./components/Contact.component";
 import BlogPage from "./pages/Blog.page";
-import AllPackagePage from "./pages/AllPackage.page";
 import SearchPage from "./pages/Search.page";
 import LoadingComponent from "./components/Loading.component";
 import { AllDataContext } from "./context/AllData.context";
 import SuccessMessageComponent from "./components/SuccessMessage.component";
 import BlogDetailsPage from "./pages/BlogDetails.page";
-import AboutPage from "./pages/About.page";
 import SideNavComponent from "./components/SideNav.component";
 import ReasonsToChooseUsPage from "./pages/ReasonsToChooseUs.page";
 import DestinationsPage from "./pages/Destinations.page";
@@ -31,15 +28,24 @@ import TestPage from "./pages/Test.page";
 import TrekkingInNepalPage from "./pages/TrekkingInNepal.page";
 import ToursInNepalPage from "./pages/ToursInNepal.page";
 import DestinationDetailsPage from "./pages/DestinationDetails.page";
+import LamaLandHomestayPage from "./pages/LamaLandHomestay.page";
 
 function App() {
   const { loading, contactPopup, setContactPopup } = useContext(AllDataContext);
-
   const location = useLocation();
+
+  const [scrollingPosition, setScrollingPosition] = useState("");
 
   useEffect(() => {
     window.scroll(0, 0);
   }, [location]);
+
+  useEffect(() => {
+    window.addEventListener("scroll", (e) => {
+      setScrollingPosition(e.target.scrollingElement.scrollTop);
+    });
+  }, []);
+
   return (
     <div className="app">
       {loading ? (
@@ -73,13 +79,9 @@ function App() {
 
           <Routes>
             <Route path="/" element={<HomePage />} />
-            <Route path="/details/:id" element={<PackageDetails />} />
             <Route path="/Knowledge" element={<BlogPage />} />
-            <Route path="/packages" element={<AllPackagePage />} />
             <Route path="/search" element={<SearchPage />} />
             <Route path="/blog-details/:id" element={<BlogDetailsPage />} />
-
-            <Route path="/about" element={<AboutPage />} />
 
             <Route
               path="/reasons-to-choose-us"
@@ -119,6 +121,11 @@ function App() {
             />
 
             <Route
+              path="/lama-land-homestay"
+              element={<LamaLandHomestayPage />}
+            />
+
+            <Route
               path="/destination-details/:id"
               element={<DestinationDetailsPage />}
             />
@@ -135,11 +142,18 @@ function App() {
 
           <WhyChooseUsComponent />
 
-          {location.pathname === "/" ? <BreconMountainRescueComponent /> : null}
-
           <HaveChatComponent />
 
           <FooterComponent />
+
+          <button
+            className={`scroll-to-top ${scrollingPosition > 100 ? "show" : ""}`}
+            onClick={() => {
+              window.scroll(0, 0);
+            }}
+          >
+            <i className="fas fa-angle-up"></i>
+          </button>
         </Fragment>
       )}
     </div>
